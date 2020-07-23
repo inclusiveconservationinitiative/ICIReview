@@ -1,0 +1,96 @@
+EoI,Geography,Reviews,Average,Total,Min,Max,Range,Percentile,Rank
+124,Andes/Amazon,1,82,82,82,82,NA,0.76,6
+130,Andes/Amazon,1,75,75,75,75,NA,0.48,12
+140,Andes/Amazon,2,64,128,58,70,12,0.1,20
+176,Andes/Amazon,2,84.5,169,81,88,7,0.9,3
+184,Andes/Amazon,1,61,61,61,61,NA,0.05,21
+205,Andes/Amazon,2,82.5,165,82,83,1,0.81,5
+231,Andes/Amazon,1,76,76,76,76,NA,0.52,11
+245,Andes/Amazon,1,67,67,67,67,NA,0.24,17
+265,Andes/Amazon,1,71,71,71,71,NA,0.33,15
+290,Andes/Amazon,1,77,77,77,77,NA,0.57,9
+299,Andes/Amazon,1,95,95,95,95,NA,1,1
+332,Andes/Amazon,2,80.5,161,63,98,35,0.71,7
+333,Andes/Amazon,2,72,144,72,72,0,0.38,13
+334,Andes/Amazon,1,72,72,72,72,NA,0.38,13
+336,Andes/Amazon,2,84,168,76,92,16,0.86,4
+341,Andes/Amazon,1,80,80,80,80,NA,0.67,8
+386,Andes/Amazon,2,66.5,133,41,92,51,0.19,18
+388,Andes/Amazon,2,50,100,40,60,20, -   ,22
+391,Andes/Amazon,2,64.5,129,57,72,15,0.14,19
+400,Andes/Amazon,2,70.5,141,56,85,29,0.29,16
+404,Andes/Amazon,1,86,86,86,86,NA,0.95,2
+405,Andes/Amazon,1,77,77,77,77,NA,0.57,9
+165,Coastal East Africa,1,30,30,30,30,NA, -   ,5
+222,Coastal East Africa,2,60.5,121,57,64,7,0.25,4
+234,Coastal East Africa,1,79,79,79,79,NA,1,1
+291,Coastal East Africa,1,66,66,66,66,NA,0.5,3
+398,Coastal East Africa,1,70,70,70,70,NA,0.75,2
+10,Congo Basin,1,61,61,61,61,NA,0.64,6
+24,Congo Basin,1,83,83,83,83,NA,1,1
+54,Congo Basin,1,9,9,9,9,NA,0.07,14
+69,Congo Basin,1,4,4,4,4,NA, -   ,15
+85,Congo Basin,1,79,79,79,79,NA,0.93,2
+93,Congo Basin,2,78,156,75,81,6,0.86,3
+107,Congo Basin,2,60.5,121,59,62,3,0.57,7
+115,Congo Basin,2,37.5,75,22,53,31,0.21,12
+212,Congo Basin,2,56,112,31,81,50,0.29,11
+273,Congo Basin,1,17,17,17,17,NA,0.14,13
+292,Congo Basin,2,59.5,119,56,63,7,0.5,8
+293,Congo Basin,2,57.5,115,52,63,11,0.36,10
+301,Congo Basin,2,72,144,66,78,12,0.79,4
+304,Congo Basin,2,67.5,135,58,77,19,0.71,5
+328,Congo Basin,1,58,58,58,58,NA,0.43,9
+5,East Africa Drylands,1,70,70,70,70,NA,0.59,10
+34,East Africa Drylands,1,46,46,46,46,NA,0.18,19
+112,East Africa Drylands,1,55,55,55,55,NA,0.32,16
+150,East Africa Drylands,1,76,76,76,76,NA,0.73,7
+151,East Africa Drylands,2,32,64,27,37,10,0.05,22
+152,East Africa Drylands,2,83.5,167,81,86,5,0.91,3
+155,East Africa Drylands,2,93.5,187,92,95,3,0.95,2
+166,East Africa Drylands,1,98,98,98,98,NA,1,1
+170,East Africa Drylands,2,81.5,163,77,86,9,0.86,4
+172,East Africa Drylands,2,62.5,125,52,73,21,0.5,12
+187,East Africa Drylands,2,51.5,103,45,58,13,0.23,18
+196,East Africa Drylands,2,31,62,0,62,62, -   ,23
+207,East Africa Drylands,2,71,142,64,78,14,0.64,9
+220,East Africa Drylands,2,77.5,155,69,86,17,0.77,6
+232,East Africa Drylands,2,52,104,49,55,6,0.27,17
+239,East Africa Drylands,1,58,58,58,58,NA,0.45,13
+275,East Africa Drylands,1,56,56,56,56,NA,0.36,15
+327,East Africa Drylands,1,78,78,78,78,NA,0.82,5
+344,East Africa Drylands,2,43,86,41,45,4,0.14,20
+356,East Africa Drylands,1,64,64,64,64,NA,0.55,11
+396,East Africa Drylands,4,74.5,298,66,80,14,0.68,8
+409,East Africa Drylands,1,41,41,41,41,NA,0.09,21
+411,East Africa Drylands,2,57.5,115,41,74,33,0.41,14
+274,Gran Chaco,1,65,65,65,65,NA,1,1
+225,Himalayas,1,65,65,65,65,NA,0.33,3
+242,Himalayas,2,66.5,133,63,70,7,0.67,2
+248,Himalayas,2,59.5,119,52,67,15, -   ,4
+249,Himalayas,2,83,166,76,90,14,1,1
+36,Melanesia/Polynesia,1,69,69,69,69,NA,0.33,3
+347,Melanesia/Polynesia,1,64,64,64,64,NA, -   ,4
+384,Melanesia/Polynesia,1,86,86,86,86,NA,1,1
+139,Melanesia/Polynesia,1,72,72,72,72,NA,0.67,2
+122,Mesoamerica,2,81.5,163,77,86,9,0.9,2
+129,Mesoamerica,2,60.5,121,43,78,35,0.4,7
+132,Mesoamerica,1,89,89,89,89,NA,1,1
+138,Mesoamerica,1,73,73,73,73,NA,0.8,3
+181,Mesoamerica,1,53,53,53,53,NA,0.2,9
+189,Mesoamerica,1,48,48,48,48,NA,0.1,10
+202,Mesoamerica,2,70.5,141,63,78,15,0.7,4
+268,Mesoamerica,1,67,67,67,67,NA,0.6,5
+338,Mesoamerica,1,63,63,63,63,NA,0.5,6
+387,Mesoamerica,1,58,58,58,58,NA,0.3,8
+397,Mesoamerica,1,39,39,39,39,NA, -   ,11
+192,South East Asia (Islands),1,48,48,48,48,NA, -   ,4
+317,South East Asia (Islands),2,61.5,123,60,63,3,0.33,3
+369,South East Asia (Islands),1,89,89,89,89,NA,1,1
+370,South East Asia (Islands),1,87,87,87,87,NA,0.67,2
+141,South East Asia (mainland),1,54,54,54,54,NA, -   ,4
+320,South East Asia (mainland),1,76,76,76,76,NA,0.67,2
+382,South East Asia (mainland),1,87,87,87,87,NA,1,1
+395,South East Asia (mainland),2,64,128,57,71,14,0.33,3
+135,Southern Cone,2,65.5,131,54,77,23,1,1
+359,Southern Cone,1,36,36,36,36,NA, -   ,2
