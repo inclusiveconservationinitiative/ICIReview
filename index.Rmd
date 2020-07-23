@@ -61,7 +61,6 @@ suppressWarnings(suppressPackageStartupMessages(library(plotly)))
 suppressWarnings(suppressPackageStartupMessages(library(flexdashboard)))
 
 
-setwd("C:/Users/MichaelOwen/Documents/Tinkering/ICI/Markdown")
 
 ```
 

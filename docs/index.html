@@ -11,7 +11,7 @@
 
 
 
-<title>Test</title>
+<title>EoI Reviews by TRC</title>
 
 <script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -23,6 +23,20 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="site_libs/react-16.12.0/react.min.js"></script>
+<script src="site_libs/react-16.12.0/react-dom.min.js"></script>
+<script src="site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="site_libs/reactable-binding-0.2.0/reactable.js"></script>
+<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<script src="site_libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -293,38 +307,577 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Test</h1>
+<h1 class="title toc-ignore">EoI Reviews by TRC</h1>
 
 </div>
 
 
 <style type="text/css">
-.title {
-  display: none;
+.main-container {
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-#getting-started img {
-  margin-right: 10px;
-}
-
 </style>
-<div class="row" style="padding-top: 30px;">
-<div id="my-lab-journal" class="section level1 col-sm-6">
-<h1><strong>My Lab Journal</strong></h1>
-<p>This is a template example for lab journaling. Students in Matt Crump’s Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too.</p>
-<div id="how-to-use" class="section level2">
-<h2>How to use</h2>
-<ol style="list-style-type: decimal">
-<li><p>fork the repo for this website and follow instructions on read me to get set up. <a href="https://github.com/CrumpLab/LabJournalWebsite">https://github.com/CrumpLab/LabJournalWebsite</a></p></li>
-<li><p>Blog/journal what you are doing in R, by editing the Journal.Rmd. See the <a href="https://crumplab.github.io/LabJournalWebsite/Journal.html">Journal page</a> for an example of what to do to get started learning R.</p></li>
-<li><p>See the <a href="https://crumplab.github.io/LabJournalWebsite/Links.html">links page</a> for lots of helpful links on learning R.</p></li>
-<li><p>Change everything to make it your own.</p></li>
-</ol>
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 14px;
+  }
+td {  /* Table  */
+  font-size: 14px;
+}
+h1.title {
+  font-size: 38px;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+}
+h2 { /* Header 2 */
+    font-size: 22px;
+}
+h3 { /* Header 3 */
+    font-size: 18px;
+}
+code.r{ /* Code block */
+    font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 14px;
+}
+</style>
+<div id="assessment-of-eoi93" class="section level1">
+<h1>Assessment of EoI:93</h1>
+<p><br><br></p>
+</div>
+<div id="eoi-metadata" class="section level1">
+<h1>EoI Metadata</h1>
+<div id="htmlwidget-1423f26adc2fd7529c26" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1423f26adc2fd7529c26">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"name":["Edmund Barrow","Olivier Langrand"],"EoI":[93,93],"Geography":["Congo Basin","Congo Basin"],"state":["DR Congo","DR Congo"],"Organization":["ANAPAC","ANAPAC"],"Section1_Total":[25,21],"Section2_Total":[31,36],"Section3_Total":[19,24],"Total":[75,81]},"columns":[{"accessor":"name","name":"name","type":"character"},{"accessor":"EoI","name":"EoI","type":"numeric"},{"accessor":"Geography","name":"Geography","type":"character"},{"accessor":"state","name":"state","type":"character"},{"accessor":"Organization","name":"Organization","type":"character"},{"accessor":"Section1_Total","name":"Section1_Total","type":"numeric"},{"accessor":"Section2_Total","name":"Section2_Total","type":"numeric"},{"accessor":"Section3_Total","name":"Section3_Total","type":"numeric"},{"accessor":"Total","name":"Total","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":0,"highlight":true,"striped":true,"crosstalkKey":["1","2"],"crosstalkGroup":"SharedDatad86e8b70","dataKey":"593fdccbae5de139e60b309fe2ecd009"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="performance-of-eoi-93-in-key-geography---percentile-by-average-score" class="section level3">
+<h3>Performance of EoI 93 in Key Geography - Percentile by Average Score</h3>
+<div class="container-fluid crosstalk-bscols">
+<div class="fluid-row">
+<div class="col-xs-8">
+<div id="htmlwidget-d81ac4ead016a5d106de" style="width:100%;height:400px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d81ac4ead016a5d106de">{"x":{"data":[{"x":[61,83,9,4,79,60.5,37.5,56,17,59.5,57.5,72,67.5,58],"y":[0.64,1,0.07,0,0.93,0.57,0.21,0.29,0.14,0.5,0.36,0.79,0.71,0.43],"text":[".crossTalkKey: 1<br />Average: 61.0<br />Percentile: 0.64<br />Geography: Congo Basin",".crossTalkKey: 2<br />Average: 83.0<br />Percentile: 1.00<br />Geography: Congo Basin",".crossTalkKey: 3<br />Average:  9.0<br />Percentile: 0.07<br />Geography: Congo Basin",".crossTalkKey: 4<br />Average:  4.0<br />Percentile: 0.00<br />Geography: Congo Basin",".crossTalkKey: 5<br />Average: 79.0<br />Percentile: 0.93<br />Geography: Congo Basin",".crossTalkKey: 7<br />Average: 60.5<br />Percentile: 0.57<br />Geography: Congo Basin",".crossTalkKey: 8<br />Average: 37.5<br />Percentile: 0.21<br />Geography: Congo Basin",".crossTalkKey: 9<br />Average: 56.0<br />Percentile: 0.29<br />Geography: Congo Basin",".crossTalkKey: 10<br />Average: 17.0<br />Percentile: 0.14<br />Geography: Congo Basin",".crossTalkKey: 11<br />Average: 59.5<br />Percentile: 0.50<br />Geography: Congo Basin",".crossTalkKey: 12<br />Average: 57.5<br />Percentile: 0.36<br />Geography: Congo Basin",".crossTalkKey: 13<br />Average: 72.0<br />Percentile: 0.79<br />Geography: Congo Basin",".crossTalkKey: 14<br />Average: 67.5<br />Percentile: 0.71<br />Geography: Congo Basin",".crossTalkKey: 15<br />Average: 58.0<br />Percentile: 0.43<br />Geography: Congo Basin"],"key":["1","2","3","4","5","7","8","9","10","11","12","13","14","15"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle-open","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"hoveron":"points","set":"SharedData1423f26a","name":"Congo Basin","legendgroup":"Congo Basin","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[78],"y":[0.86],"text":".crossTalkKey: 6<br />Average: 78.0<br />Percentile: 0.86<br />Geography: Selected","key":["6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle-open","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"hoveron":"points","set":"SharedData1423f26a","name":"Selected","legendgroup":"Selected","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":48.9497716894977},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.0499999999999998,86.95],"tickmode":"array","ticktext":["20","40","60","80"],"tickvals":[20,40,60,80],"categoryorder":"array","categoryarray":["20","40","60","80"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Average","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.05,1.05],"tickmode":"array","ticktext":["0.00","0.25","0.50","0.75","1.00"],"tickvals":[0,0.25,0.5,0.75,1],"categoryorder":"array","categoryarray":["0.00","0.25","0.50","0.75","1.00"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Percentile","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"Geography","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative","dragmode":"zoom"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"4ff43f4b481e":{"key":{},"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"4ff43f4b481e","visdat":{"4ff43f4b481e":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0,"ctGroups":["SharedData1423f26a"]},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<div id="crump-lab-human-cognition-and-performance" class="section level3 col-sm-6">
-<h3><a href="https://crumplab.github.io">Crump Lab: Human Cognition and Performance</a></h3>
-<p><a href = "https://crumplab.github.io"> <img src="images/logo.png" /> </a></p>
+</div>
+<hr />
+</div>
+<div id="section-1---experience-strengths-relevant-to-the-proposed-indigenous-territory-landscapeseascape-total-points-30" class="section level3">
+<h3><strong>Section 1 - Experience &amp; strengths relevant to the proposed Indigenous territory, landscape/seascape (Total Points: 30)</strong></h3>
+<p><u>A) Importance of the landscape/seascape/indigenous territory for biodiversity, with additional consideration to climate benefits.</u></p>
+<p>1. Is the proposed territory/landscape/seascape a globally important area for biodiversity?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Not significant;</p></li>
+<li><p>Low Significance;</p></li>
+<li><p>Moderate Significance;</p></li>
+<li><p>Medium-high Significance;</p></li>
+<li><p>High Significance;</p></li>
+<li><p>Exceptional Significance</p></li>
+</ul>
+<div id="reviewer-a-55-reviewer-b-55" class="section level5">
+<h5><em>Reviewer A:</em> 5/5 <em>Reviewer B:</em> 5/5</h5>
+</div>
+<div id="average-55" class="section level4">
+<h4><strong>Average: 5/5</strong></h4>
+<p><em>Evidence A:</em> Congo Basin forests - 2nd largest lungs of the world but at significant risk and requires global and regional actions. But area is also very important from a cultural and IPLC perspective</p>
+<p><em>Evidence B:</em>The proponent proposes to work on three main forest ecosystems of the RDC that are globally critically important for biodiversity conservation. The areas considered by the proponent are irreplaceable and key in the context of nature-based solutions used to address climate change.</p>
+<p><br></p>
+<p>2. Is the area important for climate mitigation?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>&gt;50 t/ha - Low;</p></li>
+<li><p>50 - 100 t/ha - Moderate;</p></li>
+<li><p>&gt;100 t/ha - High</p></li>
+</ul>
+<div id="reviewer-a-22-reviewer-b-22" class="section level5">
+<h5><em>Reviewer A:</em> 2/2 <em>Reviewer B:</em> 2/2</h5>
+</div>
+</div>
+<div id="average-22" class="section level4">
+<h4><strong>Average: 2/2</strong></h4>
+<p><em>Evidence A:</em> Probably very high in standing above ground C2, less sure about amount of below ground C2 - one of main lungs of planet</p>
+<p><em>Evidence B:</em>Two out of the three areas considered by the proponent are stocking high level of carbon.</p>
+<p><br></p>
+<p><u>B) Geographical focus in an area under IPLC governance.</u></p>
+<p>3. Is the area held and managed by IPLC under community-based governance systems?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>IPLC governance (rights and institutions) not evident;</p></li>
+<li><p>Project areas are marginally under IPLC governance (spatially or politically);</p></li>
+<li><p>Project areas are partially under IPLC systems of governance (spatially or politically);</p></li>
+<li><p>Project areas are largely under IPLC governance, but IPLC rights and/or institutions face significant constraints;</p></li>
+<li><p>Project areas are held and managed under IPLC governance systems, with some limitations;</p></li>
+<li><p>Project areas are held and managed under strong and active IPLC governance systems</p></li>
+</ul>
+<div id="reviewer-a-45-reviewer-b-15" class="section level5">
+<h5><em>Reviewer A:</em> 4/5 <em>Reviewer B:</em> 1/5</h5>
+</div>
+</div>
+<div id="average-2.55" class="section level4">
+<h4><strong>Average: 2.5/5</strong></h4>
+<p><em>Evidence A:</em> Large number of ICCAs of great importance for both people and nature. Area also embraces 7 National Parks, - total of 23 mill Ha under some form of protection. ICCAs will be key in term of connectivity and restoration. Should be completely under IPLC but richness (timber, mining) means government and private sector have big roles that may ignore IPLC territorial rights</p>
+<p><em>Evidence B:</em>The proponent is proposing to work on the legal recognition of the role of the indigenous and local communities in the management of natural ecosystems by the government of the RDC.</p>
+<p><br></p>
+<p>4. Does the proposal explain the unique cultural significance of the area to IPLCs?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>No explanation given of unique significance to IPLCs;</p></li>
+<li><p>Significance of site(s) vaguely described;</p></li>
+<li><p>Unique significance of project site(s) clearly explained</p></li>
+</ul>
+<div id="reviewer-a-22-reviewer-b-22-1" class="section level5">
+<h5><em>Reviewer A:</em> 2/2 <em>Reviewer B:</em> 2/2</h5>
+</div>
+</div>
+<div id="average-22-1" class="section level4">
+<h4><strong>Average: 2/2</strong></h4>
+<p><em>Evidence A:</em> Yes - importance of ICCAs, WH sites and NPs - all make for an important mosaic. But they are under threat. Generally well described on the key roles of IPs in the area and how they are key to the long term BD conservation. Also points out importance of PAs and over 23 mil Ha under some form of conservation - many of these areas are or should be IPLC</p>
+<p><em>Evidence B:</em>The cultural significance of the areas considered by the project in terms is well presented but is not very specific considering that three main forest ecosystems of RRDC are considered in the proposal.</p>
+<p><br></p>
+<p><u>C) Vulnerability of the proposed IPLCs as well as their lands/waters/natural resources to threats.</u></p>
+<p>5. Is the area vulnerable to threats/current risk of negative impacts to IPLC and biodiversity without action?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>No evident threats;</p></li>
+<li><p>Low threats;</p></li>
+<li><p>Moderate threats;</p></li>
+<li><p>Medium-high threats;</p></li>
+<li><p>High threats;</p></li>
+<li><p>Requires urgent action</p></li>
+</ul>
+<div id="reviewer-a-45-reviewer-b-55" class="section level5">
+<h5><em>Reviewer A:</em> 4/5 <em>Reviewer B:</em> 5/5</h5>
+</div>
+</div>
+<div id="average-4.55" class="section level4">
+<h4><strong>Average: 4.5/5</strong></h4>
+<p><em>Evidence A:</em> Timber logging - esp industrial (if there is logging it should be done by IPLCs; artisanal mining degrades land and water. NP and PAs have been gazetted without FPIC from IPLCs and so local people have been alienated. would seem clear that rights of IPLCs have been ignored in favour of State PAs and timber, mining, agriculture. illegal timber - esp industrial logging, mining, over exploitation of wildlife exacerbated by fact that PAs when gazetted ignore local IPLC management - especially their institutions</p>
+<p><em>Evidence B:</em>Natural forest ecosystems of RDC are highly threatened in and outside of the existing protected areas. These threats are clearly and objectively described in the document .</p>
+<p><br></p>
+<p><u>D) Opportunities for ICI results - including enabling policy conditions, positive government support and presence of successful IPLC-led conservation initiatives that could be scaled up.</u></p>
+<p>6. Are enabling policy conditions in place for IPLC-led conservation in the proposed area?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Legal and policy frameworks in project areas undermine IPLC governance (either actively or through absence);</p></li>
+<li><p>Legal and policy frameworks recognize limited rights for IPLCs over their lands and/or resources;</p></li>
+<li><p>Legal and policy frameworks recognize rights over lands and resources but with constraints (e.g., lack implementing regulations);</p></li>
+<li><p>Legal and policy frameworks actively promote the recognition of IPLC governance</p></li>
+</ul>
+<div id="reviewer-a-23-reviewer-b-03" class="section level5">
+<h5><em>Reviewer A:</em> 2/3 <em>Reviewer B:</em> 0/3</h5>
+</div>
+</div>
+<div id="average-13" class="section level4">
+<h4><strong>Average: 1/3</strong></h4>
+<p><em>Evidence A:</em> IPLC governance mechanisms are in policy - but lack of implementation and support undermines their implementation. it is clear that IPLCs and their ICCAs need the governance strength to have their rights and responsibilities to their areas of land. Policy framework there - but is it really implemented - especially IPLC rights over valuable resources; and importance of sustainable use. Concept should now move to post Covid scenario (so no consumptive use of wild fauna). There are many ICCAs but not sure to what extent they are respected by Gov</p>
+<p><em>Evidence B:</em>No and it is the main purpose of the proposed project: make the management of forest reserves by indigenous and communities possible in RDC which is not currently possible.</p>
+<p><br></p>
+<p>7. Is there active government support for IPLC-led conservation in the proposed country/area?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>National or sub-national governments are actively opposed to IPLC-led conservation;</p></li>
+<li><p>National or sub-national governments have recognized the importance of IPLC-led conservation;</p></li>
+<li><p>National or sub-national governments have implemented some support for IPLC-led conservation;</p></li>
+<li><p>National or sub-national governments are actively engaged in the promotion of IPLC rights and IPLC-led conservation</p></li>
+</ul>
+<div id="reviewer-a-23-reviewer-b-23" class="section level5">
+<h5><em>Reviewer A:</em> 2/3 <em>Reviewer B:</em> 2/3</h5>
+</div>
+</div>
+<div id="average-23" class="section level4">
+<h4><strong>Average: 2/3</strong></h4>
+<p><em>Evidence A:</em> Support is there - but the issue is implementation. However political support from World Bank, GEF, GIZ and others might change this and better empower IPLC custodians. there is policy support but is it implemented. there are great opportunities for a large ICCA network to support both conservation and livelihoods</p>
+<p><em>Evidence B:</em>There is some support from ICCN and sub-national governmental leaders (copies of the letters with the proposal), but more and stronger support will be needed for legal recognition for the management forest ecosystems to be passed on to indigenous people and communities in RDC.</p>
+<p><br></p>
+<p>8. Are there successful IPLC-led conservation initiatives in the proposed area that provide a foundation for scaling up?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>No IPLC-led conservation initiatives have been implemented;</p></li>
+<li><p>Few IPLC-led conservation projects have been implemented in pilot stages only;</p></li>
+<li><p>Some IPLC-led conservation projects have been implemented beyond pilot stages;</p></li>
+<li><p>Relevant IPLC-led conservation projects have been well established for many years</p></li>
+</ul>
+<div id="reviewer-a-23-reviewer-b-23-1" class="section level5">
+<h5><em>Reviewer A:</em> 2/3 <em>Reviewer B:</em> 2/3</h5>
+</div>
+</div>
+<div id="average-23-1" class="section level4">
+<h4><strong>Average: 2/3</strong></h4>
+<p><em>Evidence A:</em> there are certainly IPLC led conservation initiatives - whether they are successful (conservation and IP outcomes) is another questions. Some ICCAs are being implemented and registered so great opportunity for expansion of such recognition of ICCAs to increase areas under conservation, create connectivity, and empower IPLC custodians and institutions</p>
+<p><em>Evidence B:</em>There are a number of local initiatives but the proposed project aims at providing a legal framework at the national level which is needed for scaling-up the current local initiatives.</p>
+<p><br></p>
+<p><u>E) Synergies with existing investments.</u></p>
+<p>9. Are there other initiatives (relevant projects) that provide complementary support for IPLC-led conservation in the geography?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Few to no complementary projects/investment;</p></li>
+<li><p>Complementary projects/investments are small, or are tangentially related to project goals;</p></li>
+<li><p>Complementary Projects/investments align strongly with project goals and investments are substantial</p></li>
+</ul>
+<div id="reviewer-a-22-reviewer-b-23" class="section level5">
+<h5><em>Reviewer A:</em> 2/2 <em>Reviewer B:</em> 2/3</h5>
+</div>
+</div>
+<div id="average-22-2" class="section level4">
+<h4><strong>Average: 2/2</strong></h4>
+<p><em>Evidence A:</em> Large WB project support forest management by IPs, also GIZ project. World Bnak support of ICCAs, also GIZ and such projects will have the endorsement and be implemented by Gov Agencies</p>
+<p><em>Evidence B:</em>There are several organizations involved in this field and the proposed project is likely to offer a legal framework at the national level that will allow a scaling up of existing projects.</p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="section-1" class="section level2">
+<h2><strong>Section 1:</strong></h2>
+<div id="reviewer-a-total-score-2530" class="section level5">
+<h5><em>Reviewer A Total Score:</em> 25/30</h5>
+</div>
+<div id="reviewer-b-total-score-2130" class="section level5">
+<h5><em>Reviewer B Total Score:</em> 21/30</h5>
+</div>
+<div id="average-total-score-2330" class="section level4">
+<h4><strong>Average Total Score: 23/30</strong></h4>
+<p><br> <br></p>
+<hr />
+<p><strong>Section 2 - Quality and ability of the proposed approach and interventions to achieve transformational impact that generate the global environmental benefits (Total Points: 40)</strong></p>
+<p><u>A) Quality of proposed approach and ability to support traditional structures, knowledge and community practices in the delivery of global environmental benefits.</u></p>
+<p>1. Is the proposed approach well aligned with the overall objective of the ICI to: Enhance Indigenous Peoples' and Local Communities' (IPLCs) efforts to steward land, waters and natural resources to deliver global environmental benefits?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Weakly aligned;</p></li>
+<li><p>Partially aligned;</p></li>
+<li><p>Well aligned;</p></li>
+<li><p>Exceptionally well aligned</p></li>
+</ul>
+<div id="reviewer-a-33-reviewer-b-33" class="section level5">
+<h5><em>Reviewer A:</em> 3/3 <em>Reviewer B:</em> 3/3</h5>
+</div>
+</div>
+<div id="average-33" class="section level4">
+<h4><strong>Average: 3/3</strong></h4>
+<p><em>Evidence A:</em> Key thing is to really get the governance structures right (Knowledge and institutions) so that there is good governance, recognized in policy and by Gov</p>
+<p><em>Evidence B:</em>The project aims at establishing a legal framework for indigenous and communities to manage forest ecosystems.</p>
+<p><br></p>
+<p>2. Does the EoI present a clear and convincing set of activities and results?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>The objectives and approach for this project lack clarity and cohesion, and/or do not appear to be realistic for the context;</p></li>
+<li><p>Activities &amp; results defined but logic (Theory of Change) is incomplete;</p></li>
+<li><p>Activities and results are well-defined and cohesive but some aspects require clarification;</p></li>
+<li><p>The project has clear objectives and a cohesive approach with relevant activities for the context and timeline</p></li>
+</ul>
+<div id="reviewer-a-66-reviewer-b-66" class="section level5">
+<h5><em>Reviewer A:</em> 6/6 <em>Reviewer B:</em> 6/6</h5>
+</div>
+</div>
+<div id="average-66" class="section level4">
+<h4><strong>Average: 6/6</strong></h4>
+<p><em>Evidence A:</em> yes a strong set of activities - what would be good to have is an strong notion of overall outcomes?? for example 47 ICCAs formally approved with equitable governance structures</p>
+<p><em>Evidence B:</em>ANAPAC is a recognized and respected organization in this field and the proposed activities are clearly presented.</p>
+<p><br></p>
+<p>3. Will the project (objectives and activities) contribute to overcoming identified threats and putting in place necessary enabling opportunities for IPLC-led conservation?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Objectives and activities do not clearly address identified threats and opportunities;</p></li>
+<li><p>Contributions to addressing the threats and opportunities are low;</p></li>
+<li><p>Contributions to addressing threats and enabling conditions are slightly over-ambitious;</p></li>
+<li><p>The impact on threats and enabling conditions can be realistically accomplished and are sufficiently ambitious for the projects' context</p></li>
+</ul>
+<div id="reviewer-a-23-reviewer-b-33" class="section level5">
+<h5><em>Reviewer A:</em> 2/3 <em>Reviewer B:</em> 3/3</h5>
+</div>
+</div>
+<div id="average-2.53" class="section level4">
+<h4><strong>Average: 2.5/3</strong></h4>
+<p><em>Evidence A:</em> Maybe over ambitious in terms of scale of numbers of ICCAs and IPLC managed areas but it should be realistice</p>
+<p><em>Evidence B:</em>Without a legal framework no project involving indigenous people and communities will be implemented at scale.</p>
+<p><br></p>
+<p>4. Are the activities achievable within a $500,000 to $2,000,000 USD budget range in a period of 5 years of project execution?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Activities/results not aligned with EoI range of investment;</p></li>
+<li><p>Activities/results Partially aligned with EoI range of investment ;</p></li>
+<li><p>Activities/results Well aligned with EoI range of investment ;</p></li>
+<li><p>Activities/results Exceptionally well aligned with EoI range of investment</p></li>
+</ul>
+<div id="reviewer-a-23-reviewer-b-23-2" class="section level5">
+<h5><em>Reviewer A:</em> 2/3 <em>Reviewer B:</em> 2/3</h5>
+</div>
+</div>
+<div id="average-23-2" class="section level4">
+<h4><strong>Average: 2/3</strong></h4>
+<p><em>Evidence A:</em> Well aligned - though it is not clear costs of investment per ICCA and IPLC managed areas - this I assume will come in the detailed proposal</p>
+<p><em>Evidence B:</em>All will depend on how much time the government of RDC takes to review and hopefully adopt the legal framework proposed by ANAPAC.</p>
+<p><br></p>
+<p>5. Does the EoI include significant and concrete sources of co-financing?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>None;</p></li>
+<li><p>Small;</p></li>
+<li><p>Moderate;</p></li>
+<li><p>Significant</p></li>
+</ul>
+<div id="reviewer-a-33-reviewer-b-23" class="section level5">
+<h5><em>Reviewer A:</em> 3/3 <em>Reviewer B:</em> 2/3</h5>
+</div>
+</div>
+<div id="average-2.53-1" class="section level4">
+<h4><strong>Average: 2.5/3</strong></h4>
+<p><em>Evidence A:</em> But worry that this project might be drowned by e.g. WB project. But if well framed and if there is a strong lesson learning (both by IPLCs and the project) then this will be a powerful project nationally and globally</p>
+<p><em>Evidence B:</em>To some extent through local projects.</p>
+<p><br></p>
+<p><u>B) Potential of the proposed activities to achieve IPLC-led transformational impact that generate global environmental benefits.</u></p>
+<p>6. Are the estimated Global Environmental Benefits (GEF core indicators) substantial and realistic?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Not provided;</p></li>
+<li><p>Very Low (below 10,000 Ha);</p></li>
+<li><p>Moderate (between 100,000 - 500,000 Ha);</p></li>
+<li><p>High (between 500,000 - 1,000,000 Ha);</p></li>
+<li><p>Very high above 1,000,000 Ha</p></li>
+</ul>
+<div id="reviewer-a-45-reviewer-b-55-1" class="section level5">
+<h5><em>Reviewer A:</em> 4/5 <em>Reviewer B:</em> 5/5</h5>
+</div>
+</div>
+<div id="average-4.55-1" class="section level4">
+<h4><strong>Average: 4.5/5</strong></h4>
+<p><em>Evidence A:</em> This should generate a strong set of global and IPLC benefits well beyond the actual implementation areas. Ultimately it could be very high</p>
+<p><em>Evidence B:</em>ANAPAC is proposing to work in three major forest ecosystems of RDC.</p>
+<p><br></p>
+<p>7. Are the additional cultural and livelihoods results contributing to project objectives?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>No provided cultural or livelihood indicators for the project;</p></li>
+<li><p>Indicators proposed but are not clearly aligned with project goals;</p></li>
+<li><p>Indicators proposed and are moderately aligned with project goals;</p></li>
+<li><p>Additional cultural and/or livelihood indicators clearly derive from project goals</p></li>
+</ul>
+<div id="reviewer-a-13-reviewer-b-33" class="section level5">
+<h5><em>Reviewer A:</em> 1/3 <em>Reviewer B:</em> 3/3</h5>
+</div>
+</div>
+<div id="average-23-3" class="section level4">
+<h4><strong>Average: 2/3</strong></h4>
+<p><em>Evidence A:</em> In full proposal this needs to be clearly spelt out. as to the importance of cultural and livelihood aspects - for ex Sacred natural sites, livelihood benefits (economic, foods)</p>
+<p><em>Evidence B:</em>Management of forest ecosystems by indigenous people and local communities will generate additional cultural results and will promote the emergence of new economic activities.</p>
+<p><br></p>
+<p>8. Does the EoI provide a clear and robust vision for long-term sustainability?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Vision for long-term sustainability not provided;</p></li>
+<li><p>This project does not seem to have a clear long-term impact;</p></li>
+<li><p>This project will create medium-term benefits for biodiversity and IPLC governance, which future funding will hopefully build upon;</p></li>
+<li><p>This project will ensure long-term benefits to biodiversity and IPLC systems of governance</p></li>
+</ul>
+<div id="reviewer-a-23-reviewer-b-33-1" class="section level5">
+<h5><em>Reviewer A:</em> 2/3 <em>Reviewer B:</em> 3/3</h5>
+</div>
+</div>
+<div id="average-2.53-2" class="section level4">
+<h4><strong>Average: 2.5/3</strong></h4>
+<p><em>Evidence A:</em> Could be better spelt out - if the ICCAs are well developed and documented - then sustainability will higher and if they develop simple guidelines on how to develop such areas - then it will likely expand beyond the locale of teh project</p>
+<p><em>Evidence B:</em>Again without a legal framework applicable at the level of the entire country of RDC the approach will continue to be a piecemeal approach.</p>
+<p><br></p>
+<p><u>C) IPLC-led conservation that advances national and global environmental priorities.</u></p>
+<p>9. Does the EoI build on and contribute to national priorities as defined in NBSAPs and/or NDCs?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Contributions not provided;</p></li>
+<li><p>The project is weakly related to either national priorities;</p></li>
+<li><p>The project appears to be tangentially related to national priorities;</p></li>
+<li><p>The proposal reflects an understanding of the national policy priorities and clearly positions the project in relation to those priorities</p></li>
+</ul>
+<div id="reviewer-a-23-reviewer-b-23-3" class="section level5">
+<h5><em>Reviewer A:</em> 2/3 <em>Reviewer B:</em> 2/3</h5>
+</div>
+</div>
+<div id="average-23-4" class="section level4">
+<h4><strong>Average: 2/3</strong></h4>
+<p><em>Evidence A:</em> Project should make strong case for ICCAs as contributing to NBSAPs etc. This will further strengthen the importance of IPLC led conservation in contributing to national and global targets and not just focus on formal PAs Such areas could if done sensitively contribute to NDCs - but this should not overburden IPLCs with masses of additional work</p>
+<p><em>Evidence B:</em>The current NBSAP does not give much importance to the management of natural resources by indigenous people and local communities. The project has the potential to be a game changer.</p>
+<p><br></p>
+<p><u>D) Demonstrated gender mainstreaming in all activities.</u></p>
+<p>10. Does the EoI provide a clear and robust approach to gender mainstreaming?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Gender mainstreaming approach is absent;</p></li>
+<li><p>Gender mainstreaming approach is weak;</p></li>
+<li><p>Gender mainstreaming approach is moderately thought through (if there are a few activities as 'add ons');</p></li>
+<li><p>Significant and well-thought through approach to gender mainstreaming</p></li>
+</ul>
+<div id="reviewer-a-23-reviewer-b-23-4" class="section level5">
+<h5><em>Reviewer A:</em> 2/3 <em>Reviewer B:</em> 2/3</h5>
+</div>
+</div>
+<div id="average-23-5" class="section level4">
+<h4><strong>Average: 2/3</strong></h4>
+<p><em>Evidence A:</em> Could be strong - men/women do different things (therefore build on that) and women should be involved in formal governance mechanisms - but not tokenistic (the 1 lady on the committee sort of thing1!) - this section needs strenghtening</p>
+<p><em>Evidence B:</em>The proponent described clearly that the project will benefit both men and women.</p>
+<p><br></p>
+<p><u>E) Innovation and potential to scale up.</u></p>
+<p>11. Do the proposed activities and results demonstrate innovation and potential for transformative results at scale?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>None demonstrated;</p></li>
+<li><p>Low demonstrated potential;</p></li>
+<li><p>Moderate demonstrated potential;</p></li>
+<li><p>Medium-high demonstrated potential;</p></li>
+<li><p>High demonstrated potential;</p></li>
+<li><p>Exceptional demonstrated potential</p></li>
+</ul>
+<div id="reviewer-a-45-reviewer-b-55-2" class="section level5">
+<h5><em>Reviewer A:</em> 4/5 <em>Reviewer B:</em> 5/5</h5>
+</div>
+</div>
+<div id="average-4.55-2" class="section level4">
+<h4><strong>Average: 4.5/5</strong></h4>
+<p><em>Evidence A:</em> Respecting and formally recognizing ICCAs, IPLC areas of land is the way now. States can no longer afford to “do it all” - therefore important that communities are empowered to manage, have rights and responsibilities and benefit, and yes there will also be important conservation benefits</p>
+<p><em>Evidence B:</em>The project has the potential to be transformative and move the needle of the management of biodiversity by indigenous and local communities in a major way.</p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="section-2" class="section level2">
+<h2><strong>Section 2:</strong></h2>
+<div id="reviewer-a-total-score-3140" class="section level5">
+<h5><em>Reviewer A Total Score:</em> 31/40</h5>
+</div>
+<div id="reviewer-b-total-score-3640" class="section level5">
+<h5><em>Reviewer B Total Score:</em> 36/40</h5>
+</div>
+<div id="average-total-score-33.540" class="section level4">
+<h4><strong>Average Total Score: 33.5/40</strong></h4>
+<p><br> <br></p>
+<hr />
+<p><strong>Section 3 - Qualifications and experience of the Organization (Total Points: 30)</strong></p>
+<p><u>A) Indigenous Peoples or Local Community organization legally recognized under national laws.</u></p>
+<p>1. Is the EoI led by an IPLC organization?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>IPLC appear to be beneficiaries only;</p></li>
+<li><p>Combination/partnership of IPLC organizations and NGOs, and plans to build IPLC capacity over the project term are clear;</p></li>
+<li><p>IPLC-led approach, NGOs in more limited, defined roles (such as fiduciary);</p></li>
+<li><p>Fully IPLC composed and led approach</p></li>
+</ul>
+<div id="reviewer-a-46-reviewer-b-66" class="section level5">
+<h5><em>Reviewer A:</em> 4/6 <em>Reviewer B:</em> 6/6</h5>
+</div>
+</div>
+<div id="average-56" class="section level4">
+<h4><strong>Average: 5/6</strong></h4>
+<p><em>Evidence A:</em> Its a National alliance of IPLCs - so there is potential for synergy with their members to do similar works in different parts. but important that the project focuses on implementation action and not only imp of networking</p>
+<p><em>Evidence B:</em>ANAPAC is a recognized organization in this field, booth by its peers and to some extent by local governments and central governmental bodies such as ICCN.</p>
+<p><br></p>
+<p><u>B) Demonstrated on the ground leadership related to Indigenous Peoples and/or Local Community Conservation.</u></p>
+<p>2. Does the lead proponent demonstrate on-ground leadership relevant to the proposed work?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>None demonstrated;</p></li>
+<li><p>Limited demonstration of relevant on-ground leadership;</p></li>
+<li><p>Demonstrated on-ground leadership relevant to the proposed work;</p></li>
+<li><p>Exceptional and long-standing on-ground leadership relevant to the proposed work</p></li>
+</ul>
+<div id="reviewer-a-46-reviewer-b-66-1" class="section level5">
+<h5><em>Reviewer A:</em> 4/6 <em>Reviewer B:</em> 6/6</h5>
+</div>
+</div>
+<div id="average-56-1" class="section level4">
+<h4><strong>Average: 5/6</strong></h4>
+<p><em>Evidence A:</em> would be good to augment with “governance” expertise - so that all good governance aspects are integrated (insitutions, accountabilitiy, etc.,)</p>
+<p><em>Evidence B:</em>ANAPAC is a recognized leader in this field through its own work and through the alliances established with organizations working in the same domain.</p>
+<p><br></p>
+<p><u>C) Proven relevant experience in working with IPLC networks, alliances and organizations/ strength of partnerships on the ground.</u></p>
+<p>3. Does EoI demonstrate that the lead proponent has strong partnerships, particularly with other IPLC organizations, to carry out the work?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>No partners defined;</p></li>
+<li><p>No IPLC partners identified;</p></li>
+<li><p>IPLC organizations are listed as implementing partners but without clear scope (roles in project design or governance);</p></li>
+<li><p>IPLC organizations are listed as implementing partners with clear roles (in project design or governance);</p></li>
+<li><p>Strong IPLC partnerships that play a central role in design, governance, and implementation of the project;</p></li>
+<li><p>Strong IPLC partnerships have a central role in design, governance and implementation of the project and linkages with national or regional IPO networks</p></li>
+</ul>
+<div id="reviewer-a-35-reviewer-b-45" class="section level5">
+<h5><em>Reviewer A:</em> 3/5 <em>Reviewer B:</em> 4/5</h5>
+</div>
+</div>
+<div id="average-3.55" class="section level4">
+<h4><strong>Average: 3.5/5</strong></h4>
+<p><em>Evidence A:</em> Ok to say beneficiaries on the ground will implement- but this could be in more detail - what sorts of things will they implement, how will they be involved in decision making; how will the governance structures be transparent and inclusive and so forth</p>
+<p><em>Evidence B:</em>ANAPAC has strong alliances with organizations working in the same field such as Strong Roots and some on the ground local community groups.</p>
+<p><br></p>
+<p><u>D) Technical expertise and capacity to address environmental problems, root causes and barriers.</u></p>
+<p>4. Does EoI demonstrate technical capacity of lead proponent and partners to deliver the proposed results?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>No skills demonstrated;</p></li>
+<li><p>The skills and experiences outlined have little or no relation to the project activities;</p></li>
+<li><p>There is some lack of clarity or some gaps in the capacities necessary to implement the project;</p></li>
+<li><p>The activities clearly show how they plan to fill capacity gaps over the course of the project;</p></li>
+<li><p>They seem to have adequate skills and capacity for the project but do not have experience with GEF projects;</p></li>
+<li><p>The lead organization and project partners clearly communicate that they have all the skills and experience necessary to implement the project activities. Also, have past experience with GEF funded projects.</p></li>
+</ul>
+<div id="reviewer-a-45-reviewer-b-45" class="section level5">
+<h5><em>Reviewer A:</em> 4/5 <em>Reviewer B:</em> 4/5</h5>
+</div>
+</div>
+<div id="average-45" class="section level4">
+<h4><strong>Average: 4/5</strong></h4>
+<p><em>Evidence A:</em> No GEF exp - but there seems to be a strong skills set to be able to deliver on GEF conditions. the referenced project are smallish in scale - would be good to see if there are also larger projects</p>
+<p><em>Evidence B:</em>ANAPAC is well intentioned and has the potential to grow as a major player in the field of the empowerment of indigenous people and local communities in natural resource management.</p>
+<p><br></p>
+<p><u>E) Project Management capacity.</u></p>
+<p>5. Does the EoI demonstrate project &amp; financial management capacity needed for scale of proposed effort?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Very limited (no criteria met);</p></li>
+<li><p>Some capacity but would require support (1/3 criteria);</p></li>
+<li><p>Moderate capacity (2/3 criteria met);</p></li>
+<li><p>Very strong (all criteria met) with demonstrated past performance</p></li>
+</ul>
+<div id="reviewer-a-46-reviewer-b-46" class="section level5">
+<h5><em>Reviewer A:</em> 4/6 <em>Reviewer B:</em> 4/6</h5>
+</div>
+</div>
+<div id="average-46" class="section level4">
+<h4><strong>Average: 4/6</strong></h4>
+<p><em>Evidence A:</em> Seems to have good capacity. Though the Network does not appear to have large projects on its own. However with their partner ROOTS - this makes it stronger, as they will be one of the implementing partners</p>
+<p><em>Evidence B:</em>ANAPAC has a modest annual budget but they are collaborating with Strong Roots who is managing larger budgets and funding coming from large institutional donors.</p>
+<p><br></p>
+<p>6. Does lead organization have experience with safeguards and other standards required by GEF?</p>
+<p><em>Scoring:</em></p>
+<ul>
+<li><p>Answered no;</p></li>
+<li><p>Answered yes but with weak or lacking explanation to the extent;</p></li>
+<li><p>Answered yes with clear explanation of the extent</p></li>
+</ul>
+<div id="reviewer-a-02-reviewer-b-02" class="section level5">
+<h5><em>Reviewer A:</em> 0/2 <em>Reviewer B:</em> 0/2</h5>
+</div>
+</div>
+<div id="average-02" class="section level4">
+<h4><strong>Average: 0/2</strong></h4>
+<p><em>Evidence A:</em> NA</p>
+<p><em>Evidence B:</em>ANAPAC does not seem to have any experience with the GEF and as such they will have to gain experience with safeguards and other standards.</p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="section-3" class="section level2">
+<h2><strong>Section 3:</strong></h2>
+<div id="reviewer-a-total-score-1930" class="section level5">
+<h5><em>Reviewer A Total Score:</em> 19/30</h5>
+</div>
+<div id="reviewer-b-total-score-2430" class="section level5">
+<h5><em>Reviewer B Total Score:</em> 24/30</h5>
+</div>
+<div id="average-total-score-33.530" class="section level4">
+<h4><strong>Average Total Score: 33.5/30</strong></h4>
+<p><br> <br></p>
+</div>
+</div>
 </div>
 
 
