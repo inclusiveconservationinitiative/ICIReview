@@ -2,10 +2,10 @@ name: "MyLabJournal"
 navbar:
   title: "Test"
   left:
-    - text: "Home"
-      href: index.html
-    - text: "Journal"
+    - text: "Overview"
       href: Journal.html
-    - text: "Links"
-      href: Links.html
+    - text: "Sample EoI Review"
+      href: index.html
+
+
 output_dir: "docs"
