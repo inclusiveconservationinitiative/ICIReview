@@ -1,6 +1,6 @@
-name: "MyLabJournal"
+name: "Testrmarkdown"
 navbar:
-  title: "Test"
+  title: "ICI Geographies"
   left:
     - text: "Overview"
       href: Journal.html
