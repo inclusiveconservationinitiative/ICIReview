@@ -94,7 +94,7 @@ bscols(
         return colInfo.column.name + '<div style=\"color: #999\">(%)</div>'
       }
     "))),
-    showPageSizeOptions = TRUE, pageSizeOptions = c(5, 10, 25), defaultPageSize = 5,
+    showPageSizeOptions = TRUE, pageSizeOptions = c(5, 10, 25, 50), defaultPageSize = 5,
     defaultSorted = list(Average = "desc"),
             highlight = TRUE,
             striped = TRUE)
