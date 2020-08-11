@@ -4,8 +4,7 @@ navbar:
   left:
     - text: "Overview"
       href: Journal.html
-    - text: "Sample EoI Review"
-      href: index.html
+
 
 
 output_dir: "docs"
