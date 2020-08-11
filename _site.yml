@@ -3,7 +3,7 @@ navbar:
   title: "ICI Geographies"
   left:
     - text: "Overview"
-      href: Journal.html
+      href: Overview.html
 
 
 
