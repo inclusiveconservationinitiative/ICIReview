@@ -228,7 +228,7 @@ bscols(
     filter_select("EoI", "EoI Number", full_Data, ~EoI)
   ),
   reactable(full_Data,
-            showPageSizeOptions = TRUE, pageSizeOptions = c(5, 10, 25), defaultPageSize = 5,
+            showPageSizeOptions = TRUE, pageSizeOptions = c(5, 10, 25, 50), defaultPageSize = 5,
             highlight = TRUE,
             striped = TRUE)
 
