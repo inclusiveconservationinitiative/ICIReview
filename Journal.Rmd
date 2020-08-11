@@ -102,7 +102,7 @@ bscols(
 )
 ```
 
-### Performance of EoIs - Percentile by Average Total Score Score
+### Performance of EoIs - Percentile by Average Total Score
 
 ```{r echo = FALSE}
 p <- ggplot(data, aes(x=Average, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
