@@ -2,6 +2,6 @@ name: "Testrmarkdown"
 navbar:
   title: "ICI Geographies"
   left:
-  - text: "Menu"
+  - text: "Overview"
     href: index.html
 output_dir: "docs"
