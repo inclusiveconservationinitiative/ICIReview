@@ -105,15 +105,24 @@ summaryStats<- subset(summaryStats, gsub(" 09$", "", Geography)==subgroup$Geogra
 summaryStats$Geography[match(subgroup$EoI[1], summaryStats$EoI)] <- paste("EoI", subgroup$EoI[1])
 
 
-p <- ggplot(summaryStats, aes(x=Average, y=Geog_Percentile, color = Geography), group = EoI) +
-            geom_point(shape=1)
+p <- ggplot(summaryStats, aes(x=Average, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+                                                                                  "<br>",
+                                                                                  "Average: ", Average,
+                                                                                  "<br>",
+                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
+            geom_point(shape=1) +
+            xlab("Average Total Score") +
+            ylab("Geography Overall Percentile") +
+            scale_x_continuous(limits = c(0, 100)) +
+            scale_y_continuous(limits = c(0, 1))
+
 
 
 
 
 bscols(
   widths = c(8),
-ggplotly(p)
+ggplotly(p, tooltip="text")
 )
 ```
 
@@ -144,7 +153,7 @@ ggplotly(p)
 
 <div class="alert alert-info">               
 ##### *Reviewer A:* `r subgroup$Section1_A1[1]`/5   *Reviewer B:* `r subgroup$Section1_A1[2]`/5
-#### **Average: `r mean(subgroup$Section1_A1)`/5**
+#### **Average: `r round(mean(subgroup$Section1_A1, na.rm=TRUE),2)`/5**
 
 
 *Evidence A:* `r subgroup$Evidence1_A1[1]` 
@@ -166,7 +175,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section1_A2[1]`/2   *Reviewer B:* `r subgroup$Section1_A2[2]`/2
-#### **Average: `r mean(subgroup$Section1_A2)`/2**
+#### **Average: `r round(mean(subgroup$Section1_A2, na.rm=TRUE),2)`/2**
 
 
 *Evidence A:* `r subgroup$Evidence1_A2[1]` 
@@ -201,7 +210,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section1_B3[1]`/5   *Reviewer B:* `r subgroup$Section1_B3[2]`/5
-#### **Average: `r mean(subgroup$Section1_B3)`/5**
+#### **Average: `r round(mean(subgroup$Section1_B3, na.rm=TRUE),2)`/5**
 
 
 *Evidence A:* `r subgroup$Evidence1_B3[1]` 
@@ -223,7 +232,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section1_B4[1]`/2   *Reviewer B:* `r subgroup$Section1_B4[2]`/2
-#### **Average: `r mean(subgroup$Section1_B4)`/2**
+#### **Average: `r round(mean(subgroup$Section1_B4, na.rm=TRUE),2)`/2**
 
 
 *Evidence A:* `r subgroup$Evidence1_B4[1]` 
@@ -254,7 +263,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section1_C5[1]`/5   *Reviewer B:* `r subgroup$Section1_C5[2]`/5
-#### **Average: `r mean(subgroup$Section1_C5)`/5**
+#### **Average: `r round(mean(subgroup$Section1_C5, na.rm=TRUE),2)`/5**
 
 
 *Evidence A:* `r subgroup$Evidence1_C5[1]` 
@@ -285,7 +294,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section1_D6[1]`/3   *Reviewer B:* `r subgroup$Section1_D6[2]`/3
-#### **Average: `r mean(subgroup$Section1_D6)`/3**
+#### **Average: `r round(mean(subgroup$Section1_D6, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence1_D6[1]` 
@@ -313,7 +322,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section1_D7[1]`/3   *Reviewer B:* `r subgroup$Section1_D7[2]`/3
-#### **Average: `r mean(subgroup$Section1_D7)`/3**
+#### **Average: `r round(mean(subgroup$Section1_D7, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence1_D7[1]` 
@@ -341,7 +350,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section1_D8[1]`/3   *Reviewer B:* `r subgroup$Section1_D8[2]`/3
-#### **Average: `r mean(subgroup$Section1_D8)`/3**
+#### **Average: `r round(mean(subgroup$Section1_D8, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence1_D8[1]` 
@@ -367,7 +376,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section1_E9[1]`/2   *Reviewer B:* `r subgroup$Section1_E9[2]`/3
-#### **Average: `r mean(subgroup$Section1_E9)`/2**
+#### **Average: `r round(mean(subgroup$Section1_E9, na.rm=TRUE),2)`/2**
 
 
 *Evidence A:* `r subgroup$Evidence1_E9[1]` 
@@ -383,7 +392,7 @@ ggplotly(p)
 ##### *Reviewer A Total Score:* `r subgroup$Section1_Total[1]`/30   
 ##### *Reviewer B Total Score:* `r subgroup$Section1_Total[2]`/30  
 
-#### **Average Total Score: `r mean(subgroup$Section1_Total)`/30**
+#### **Average Total Score: `r round(mean(subgroup$Section1_Total, na.rm=TRUE),2)`/30**
 </div>
 
 <br>
@@ -402,10 +411,14 @@ summaryStats2<- subset(summaryStats2, gsub(" 09$", "", Geography)==subgroup$Geog
 summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste("EoI", subgroup$EoI[1])
 
 
-p <- ggplot(summaryStats2, aes(x=Avg_Sec_1, y=Geog_Percentile, color = Geography), group = EoI) +
+p <- ggplot(summaryStats2, aes(x=Avg_Sec_1, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+                                                                                  "<br>",
+                                                                                  "Average Sec. 1: ", Avg_Sec_1,
+                                                                                  "<br>",
+                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
             geom_point(shape=1)+
             xlab("Average Section 1") +
-            ylab("Geography Percentile") +
+            ylab("Geography Overall Percentile") +
             scale_x_continuous(limits = c(0, 30)) +
             scale_y_continuous(limits = c(0, 1))
 
@@ -414,7 +427,7 @@ p <- ggplot(summaryStats2, aes(x=Avg_Sec_1, y=Geog_Percentile, color = Geography
 
 bscols(
   widths = c(8),
-ggplotly(p)
+ggplotly(p, tooltip="text")
 )
 ```
 
@@ -438,7 +451,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_A1[1]`/3   *Reviewer B:* `r subgroup$Section2_A1[2]`/3
-#### **Average: `r mean(subgroup$Section2_A1)`/3**
+#### **Average: `r round(mean(subgroup$Section2_A1, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence2_A1[1]` 
@@ -466,7 +479,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_A2[1]`/6   *Reviewer B:* `r subgroup$Section2_A2[2]`/6
-#### **Average: `r mean(subgroup$Section2_A2)`/6**
+#### **Average: `r round(mean(subgroup$Section2_A2, na.rm=TRUE),2)`/6**
 
 
 *Evidence A:* `r subgroup$Evidence2_A2[1]` 
@@ -494,7 +507,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_A3[1]`/3   *Reviewer B:* `r subgroup$Section2_A3[2]`/3
-#### **Average: `r mean(subgroup$Section2_A3)`/3**
+#### **Average: `r round(mean(subgroup$Section2_A3, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence2_A3[1]` 
@@ -519,7 +532,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_A4[1]`/3   *Reviewer B:* `r subgroup$Section2_A4[2]`/3
-#### **Average: `r mean(subgroup$Section2_A4)`/3**
+#### **Average: `r round(mean(subgroup$Section2_A4, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence2_A4[1]` 
@@ -543,7 +556,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_A5[1]`/3   *Reviewer B:* `r subgroup$Section2_A5[2]`/3
-#### **Average: `r mean(subgroup$Section2_A5)`/3**
+#### **Average: `r round(mean(subgroup$Section2_A5, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence2_A5[1]` 
@@ -571,7 +584,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_B6[1]`/5   *Reviewer B:* `r subgroup$Section2_B6[2]`/5
-#### **Average: `r mean(subgroup$Section2_B6)`/5**
+#### **Average: `r round(mean(subgroup$Section2_B6, na.rm=TRUE),2)`/5**
 
 
 *Evidence A:* `r subgroup$Evidence2_B6[1]` 
@@ -596,7 +609,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_B7[1]`/3   *Reviewer B:* `r subgroup$Section2_B7[2]`/3
-#### **Average: `r mean(subgroup$Section2_B7)`/3**
+#### **Average: `r round(mean(subgroup$Section2_B7, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence2_B7[1]` 
@@ -622,7 +635,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_B8[1]`/3   *Reviewer B:* `r subgroup$Section2_B8[2]`/3
-#### **Average: `r mean(subgroup$Section2_B8)`/3**
+#### **Average: `r round(mean(subgroup$Section2_B8, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence2_B8[1]` 
@@ -651,7 +664,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_C9[1]`/3   *Reviewer B:* `r subgroup$Section2_C9[2]`/3
-#### **Average: `r mean(subgroup$Section2_C9)`/3**
+#### **Average: `r round(mean(subgroup$Section2_C9, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence2_C9[1]` 
@@ -679,7 +692,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_D10[1]`/3   *Reviewer B:* `r subgroup$Section2_D10[2]`/3
-#### **Average: `r mean(subgroup$Section2_D10)`/3**
+#### **Average: `r round(mean(subgroup$Section2_D10, na.rm=TRUE),2)`/3**
 
 
 *Evidence A:* `r subgroup$Evidence2_D10[1]` 
@@ -709,7 +722,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section2_E11[1]`/5   *Reviewer B:* `r subgroup$Section2_E11[2]`/5
-#### **Average: `r mean(subgroup$Section2_E11)`/5**
+#### **Average: `r round(mean(subgroup$Section2_E11, na.rm=TRUE),2)`/5**
 
 
 *Evidence A:* `r subgroup$Evidence2_E11[1]` 
@@ -725,7 +738,7 @@ ggplotly(p)
 ##### *Reviewer A Total Score:* `r subgroup$Section2_Total[1]`/40   
 ##### *Reviewer B Total Score:* `r subgroup$Section2_Total[2]`/40  
 
-#### **Average Total Score: `r mean(subgroup$Section2_Total)`/40**
+#### **Average Total Score: `r round(mean(subgroup$Section2_Total, na.rm=TRUE),2)`/40**
 </div>
 
 <br>
@@ -744,11 +757,15 @@ summaryStats2<- subset(summaryStats2, gsub(" 09$", "", Geography)==subgroup$Geog
 summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste("EoI", subgroup$EoI[1])
 
 
-p <- ggplot(summaryStats2, aes(x=Avg_Sec_2, y=Geog_Percentile, color = Geography), group = EoI) +
+p <- ggplot(summaryStats2, aes(x=Avg_Sec_2, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+                                                                                  "<br>",
+                                                                                  "Average Sec. 2: ", Avg_Sec_2,
+                                                                                  "<br>",
+                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
             geom_point(shape=1)+
             xlab("Average Section 2") +
-            ylab("Geography Percentile") +
-            scale_x_continuous(limits = c(0, 30)) +
+            ylab("Geography Overall Percentile") +
+            scale_x_continuous(limits = c(0, 40)) +
             scale_y_continuous(limits = c(0, 1))
 
 
@@ -756,7 +773,7 @@ p <- ggplot(summaryStats2, aes(x=Avg_Sec_2, y=Geog_Percentile, color = Geography
 
 bscols(
   widths = c(8),
-ggplotly(p)
+ggplotly(p, tooltip="text")
 )
 ```
 
@@ -781,7 +798,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section3_A1[1]`/6   *Reviewer B:* `r subgroup$Section3_A1[2]`/6
-#### **Average: `r mean(subgroup$Section3_A1)`/6**
+#### **Average: `r round(mean(subgroup$Section3_A1, na.rm=TRUE),2)`/6**
 
 
 *Evidence A:* `r subgroup$Evidence3_A1[1]` 
@@ -808,7 +825,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section3_B2[1]`/6   *Reviewer B:* `r subgroup$Section3_B2[2]`/6
-#### **Average: `r mean(subgroup$Section3_B2)`/6**
+#### **Average: `r round(mean(subgroup$Section3_B2, na.rm=TRUE),2)`/6**
 
 
 *Evidence A:* `r subgroup$Evidence3_B2[1]` 
@@ -843,7 +860,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section3_C3[1]`/5   *Reviewer B:* `r subgroup$Section3_C3[2]`/5
-#### **Average: `r mean(subgroup$Section3_C3)`/5**
+#### **Average: `r round(mean(subgroup$Section3_C3, na.rm=TRUE),2)`/5**
 
 
 *Evidence A:* `r subgroup$Evidence3_C3[1]` 
@@ -880,7 +897,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section3_D4[1]`/5   *Reviewer B:* `r subgroup$Section3_D4[2]`/5
-#### **Average: `r mean(subgroup$Section3_D4)`/5**
+#### **Average: `r round(mean(subgroup$Section3_D4, na.rm=TRUE),2)`/5**
 
 
 *Evidence A:* `r subgroup$Evidence3_D4[1]` 
@@ -906,7 +923,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section3_E5[1]`/6   *Reviewer B:* `r subgroup$Section3_E5[2]`/6
-#### **Average: `r mean(subgroup$Section3_E5)`/6**
+#### **Average: `r round(mean(subgroup$Section3_E5, na.rm=TRUE),2)`/6**
 
 
 *Evidence A:* `r subgroup$Evidence3_E5[1]` 
@@ -928,7 +945,7 @@ ggplotly(p)
 
 <div class="alert alert-info">  
 ##### *Reviewer A:* `r subgroup$Section3_E6[1]`/2   *Reviewer B:* `r subgroup$Section3_E6[2]`/2
-#### **Average: `r mean(subgroup$Section3_E6)`/2**
+#### **Average: `r round(mean(subgroup$Section3_E6, na.rm=TRUE),2)`/2**
 
 
 *Evidence A:* `r subgroup$Evidence3_E6[1]` 
@@ -944,7 +961,7 @@ ggplotly(p)
 ##### *Reviewer A Total Score:* `r subgroup$Section3_Total[1]`/30   
 ##### *Reviewer B Total Score:* `r subgroup$Section3_Total[2]`/30  
 
-#### **Average Total Score: `r mean(subgroup$Section2_Total)`/30**
+#### **Average Total Score: `r round(mean(subgroup$Section3_Total, na.rm=TRUE),2)`/30**
 </div>
 
 <br>
@@ -963,10 +980,14 @@ summaryStats2<- subset(summaryStats2, gsub(" 09$", "", Geography)==subgroup$Geog
 summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste("EoI", subgroup$EoI[1])
 
 
-p <- ggplot(summaryStats2, aes(x=Avg_Sec_3, y=Geog_Percentile, color = Geography), group = EoI) +
+p <- ggplot(summaryStats2, aes(x=Avg_Sec_3, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+                                                                                  "<br>",
+                                                                                  "Average Sec. 3: ", Avg_Sec_3,
+                                                                                  "<br>",
+                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
             geom_point(shape=1)+
             xlab("Average Section 3") +
-            ylab("Geography Percentile") +
+            ylab("Geography Overall Percentile") +
             scale_x_continuous(limits = c(0, 30)) +
             scale_y_continuous(limits = c(0, 1))
 
@@ -975,6 +996,6 @@ p <- ggplot(summaryStats2, aes(x=Avg_Sec_3, y=Geog_Percentile, color = Geography
 
 bscols(
   widths = c(8),
-ggplotly(p)
+ggplotly(p, tooltip="text")
 )
 ```

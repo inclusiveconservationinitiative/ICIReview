@@ -1,0 +1,1064 @@
+---
+title: "EoI Reviews by TRC"
+output:
+  html_document:
+    df_print: paged
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    social: menu
+    source_code: embed
+  pdf_document: default
+  word_document: default
+
+---
+<style type="text/css">
+.main-container {
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+
+
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 14px;
+  }
+td {  /* Table  */
+  font-size: 14px;
+}
+h1.title {
+  font-size: 38px;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+}
+h2 { /* Header 2 */
+    font-size: 22px;
+}
+h3 { /* Header 3 */
+    font-size: 18px;
+}
+code.r{ /* Code block */
+    font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 14px;
+}
+</style>
+
+
+```{r, echo=FALSE}
+suppressWarnings(suppressPackageStartupMessages(library(ggplot2)))
+suppressWarnings(suppressPackageStartupMessages(library(dplyr)))
+suppressWarnings(suppressPackageStartupMessages(library(leaflet)))
+suppressWarnings(suppressPackageStartupMessages(library(DT)))
+suppressWarnings(suppressPackageStartupMessages(library(stringr)))
+suppressWarnings(suppressPackageStartupMessages(library(knitr)))
+suppressWarnings(suppressPackageStartupMessages(library(markdown)))
+suppressWarnings(suppressPackageStartupMessages(library(rmarkdown)))
+suppressWarnings(suppressPackageStartupMessages(library(crosstalk)))
+suppressWarnings(suppressPackageStartupMessages(library(reactable)))
+suppressWarnings(suppressPackageStartupMessages(library(plotly)))
+suppressWarnings(suppressPackageStartupMessages(library(flexdashboard)))
+
+
+
+```
+
+```{r, echo=FALSE}
+##fullData <- readxl::read_xlsx("fulldata.xlsx")
+##fullData <- fullData[9:10,]
+
+```
+
+\AtBeginDocument{\let\maketitle\relax}
+
+
+# Assessment of EoI:`r subgroup$EoI[1]` 
+
+<br><br>
+
+# EoI Metadata
+```{r echo = FALSE}
+
+full_Data <- subgroup[c(1,4:7,26,49,62,65)]
+
+  reactable(full_Data,
+            defaultPageSize = 4, 
+            minRows = 4,
+            highlight = TRUE,
+            striped = TRUE)
+
+```
+
+### Performance of EoI `r subgroup$EoI[1]` in `r subgroup$Geography[1]` - Percentile by Average Score
+
+```{r echo = FALSE}
+summaryStats <- read.csv("summaryStats_Round.csv")
+
+summaryStats<- subset(summaryStats, gsub(" 09$", "", Geography)==subgroup$Geography[1])
+
+
+summaryStats$Geography[match(subgroup$EoI[1], summaryStats$EoI)] <- paste("EoI", subgroup$EoI[1])
+
+
+p <- ggplot(summaryStats, aes(x=Average, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+                                                                                  "<br>",
+                                                                                  "Average: ", Average,
+                                                                                  "<br>",
+                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
+            geom_point(shape=1) +
+            xlab("Average Total Score") +
+            ylab("Geography Overall Percentile") +
+            scale_x_continuous(limits = c(0, 100)) +
+            scale_y_continuous(limits = c(0, 1))
+
+
+
+
+bscols(
+  widths = c(8),
+ggplotly(p, tooltip="text")
+)
+```
+
+
+***
+
+### **Section 1 - Experience & strengths relevant to the proposed Indigenous territory, landscape/seascape (Total Points: 30)**
+
+##### [A) Importance of the landscape/seascape/indigenous territory for biodiversity, with additional consideration to climate benefits.]{.ul}
+
+##### 1\. Is the proposed territory/landscape/seascape a globally important area for biodiversity?
+
+*Scoring:*
+
+-   Not significant;
+
+-   Low Significance;
+
+-   Moderate Significance;
+
+-   Medium-high Significance;
+
+-   High Significance;
+
+-   Exceptional Significance
+
+
+
+<div class="alert alert-info">               
+##### *Reviewer A:* `r subgroup$Section1_A1[1]`/5   *Reviewer B:* `r subgroup$Section1_A1[2]`/5  *Reviewer C:* `r subgroup$Section1_A1[3]`/5
+#### **Average: `r round(mean(subgroup$Section1_A1, na.rm=TRUE),2)`/5**
+
+
+*Evidence A:* `r subgroup$Evidence1_A1[1]` 
+
+*Evidence B:*`r subgroup$Evidence1_A1[2]` 
+
+*Evidence C:*`r subgroup$Evidence1_A1[3]` 
+</div>
+
+<br>
+
+##### 2\. Is the area important for climate mitigation?
+
+*Scoring:*
+
+-   \>50 t/ha - Low;
+
+-   50 - 100 t/ha - Moderate;
+
+-   \>100 t/ha - High
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section1_A2[1]`/2   *Reviewer B:* `r subgroup$Section1_A2[2]`/2 *Reviewer C:* `r subgroup$Section1_A2[3]`/2
+#### **Average: `r round(mean(subgroup$Section1_A2, na.rm=TRUE),2)`/2**
+
+
+
+
+
+*Evidence A:* `r subgroup$Evidence1_A2[1]` 
+
+*Evidence B:*`r subgroup$Evidence1_A2[2]` 
+
+*Evidence C:*`r subgroup$Evidence1_A2[3]` 
+
+</div>
+
+<br>
+
+##### [B) Geographical focus in an area under IPLC governance.]{.ul}
+
+##### 3\. Is the area held and managed by IPLC under community-based governance systems?
+
+*Scoring:*
+
+-   IPLC governance (rights and institutions) not evident;
+
+-   Project areas are marginally under IPLC governance (spatially or
+    politically);
+
+-   Project areas are partially under IPLC systems of governance
+    (spatially or politically);
+
+-   Project areas are largely under IPLC governance, but IPLC rights
+    and/or institutions face significant constraints;
+
+-   Project areas are held and managed under IPLC governance systems,
+    with some limitations;
+
+-   Project areas are held and managed under strong and active IPLC
+    governance systems
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section1_B3[1]`/5   *Reviewer B:* `r subgroup$Section1_B3[2]`/5 *Reviewer C:* `r subgroup$Section1_A2[3]`/2
+#### **Average: `r round(mean(subgroup$Section1_B3, na.rm=TRUE),2)`/5**
+
+
+*Evidence A:* `r subgroup$Evidence1_B3[1]` 
+
+*Evidence B:*`r subgroup$Evidence1_B3[2]` 
+
+*Evidence C:*`r subgroup$Evidence1_B3[3]` 
+
+</div>
+
+<br>
+
+##### 4\. Does the proposal explain the unique cultural significance of the area to IPLCs?
+
+*Scoring:*
+
+-   No explanation given of unique significance to IPLCs;
+
+-   Significance of site(s) vaguely described;
+
+-   Unique significance of project site(s) clearly explained
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section1_B4[1]`/2   *Reviewer B:* `r subgroup$Section1_B4[2]`/2 *Reviewer C:* `r subgroup$Section1_B4[3]`/2
+#### **Average: `r round(mean(subgroup$Section1_B4, na.rm=TRUE),2)`/2**
+
+
+*Evidence A:* `r subgroup$Evidence1_B4[1]` 
+
+*Evidence B:*`r subgroup$Evidence1_B4[2]` 
+
+*Evidence C:*`r subgroup$Evidence1_B4[3]` 
+
+</div>
+
+<br>
+
+
+##### [C) Vulnerability of the proposed IPLCs as well as their lands/waters/natural resources to threats.]{.ul}
+
+##### 5\. Is the area vulnerable to threats/current risk of negative impacts to IPLC and biodiversity without action?
+
+*Scoring:*
+
+-   No evident threats;
+
+-   Low threats;
+
+-   Moderate threats;
+
+-   Medium-high threats;
+
+-   High threats;
+
+-   Requires urgent action
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section1_C5[1]`/5   *Reviewer B:* `r subgroup$Section1_C5[2]`/5  *Reviewer C:* `r subgroup$Section1_C5[3]`/5 
+#### **Average: `r round(mean(subgroup$Section1_C5, na.rm=TRUE),2)`/5**
+
+
+*Evidence A:* `r subgroup$Evidence1_C5[1]` 
+
+*Evidence B:*`r subgroup$Evidence1_C5[2]` 
+
+*Evidence C:*`r subgroup$Evidence1_C5[3]` 
+</div>
+
+<br>
+
+##### [D) Opportunities for ICI results - including enabling policy conditions, positive government support and presence of successful IPLC-led conservation initiatives that could be scaled up.]{.ul}
+
+##### 6\. Are enabling policy conditions in place for IPLC-led conservation in the proposed area?
+
+*Scoring:*
+
+-   Legal and policy frameworks in project areas undermine IPLC
+    governance (either actively or through absence);
+
+-   Legal and policy frameworks recognize limited rights for IPLCs over
+    their lands and/or resources;
+
+-   Legal and policy frameworks recognize rights over lands and
+    resources but with constraints (e.g., lack implementing
+    regulations);
+
+-   Legal and policy frameworks actively promote the recognition of IPLC
+    governance
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section1_D6[1]`/3   *Reviewer B:* `r subgroup$Section1_D6[2]`/3 *Reviewer C:* `r subgroup$Section1_D6[2]`/3
+#### **Average: `r round(mean(subgroup$Section1_D6, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence1_D6[1]` 
+
+*Evidence B:*`r subgroup$Evidence1_D6[2]` 
+
+*Evidence C:*`r subgroup$Evidence1_D6[3]` 
+
+</div>
+
+<br>
+
+##### 7\. Is there active government support for IPLC-led conservation in the proposed country/area?
+
+*Scoring:*
+
+-   National or sub-national governments are actively opposed to
+    IPLC-led conservation;
+
+-   National or sub-national governments have recognized the importance
+    of IPLC-led conservation;
+
+-   National or sub-national governments have implemented some support
+    for IPLC-led conservation;
+
+-   National or sub-national governments are actively engaged in the
+    promotion of IPLC rights and IPLC-led conservation
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section1_D7[1]`/3   *Reviewer B:* `r subgroup$Section1_D7[2]`/3 *Reviewer C:* `r subgroup$Section1_D7[3]`/3
+#### **Average: `r round(mean(subgroup$Section1_D7, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence1_D7[1]` 
+
+*Evidence B:*`r subgroup$Evidence1_D7[2]` 
+
+*Evidence C:*`r subgroup$Evidence1_D7[3]` 
+
+</div>
+
+<br>
+
+
+##### 8\. Are there successful IPLC-led conservation initiatives in the proposed area that provide a foundation for scaling up?
+
+*Scoring:*
+
+-   No IPLC-led conservation initiatives have been implemented;
+
+-   Few IPLC-led conservation projects have been implemented in pilot
+    stages only;
+
+-   Some IPLC-led conservation projects have been implemented beyond
+    pilot stages;
+
+-   Relevant IPLC-led conservation projects have been well established
+    for many years
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section1_D8[1]`/3   *Reviewer B:* `r subgroup$Section1_D8[2]`/3 *Reviewer C:* `r subgroup$Section1_D8[3]`/3
+#### **Average: `r round(mean(subgroup$Section1_D8, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence1_D8[1]` 
+
+*Evidence B:*`r subgroup$Evidence1_D8[2]` 
+
+*Evidence C:*`r subgroup$Evidence1_D8[3]` 
+
+</div>
+
+<br>
+
+##### [E) Synergies with existing investments.]{.ul}
+
+##### 9\. Are there other initiatives (relevant projects) that provide complementary support for IPLC-led conservation in the geography?
+
+*Scoring:*
+
+-   Few to no complementary projects/investment;
+
+-   Complementary projects/investments are small, or are tangentially
+    related to project goals;
+
+-   Complementary Projects/investments align strongly with project goals
+    and investments are substantial
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section1_E9[1]`/2   *Reviewer B:* `r subgroup$Section1_E9[2]`/3 *Reviewer C:* `r subgroup$Section1_E9[3]`/3
+#### **Average: `r round(mean(subgroup$Section1_E9, na.rm=TRUE),2)`/2**
+
+
+*Evidence A:* `r subgroup$Evidence1_E9[1]` 
+
+*Evidence B:*`r subgroup$Evidence1_E9[2]` 
+
+*Evidence C:*`r subgroup$Evidence1_E9[3]` 
+</div>
+
+<br>
+<br>
+
+<div class="well well-sm">               
+## **Section 1:**
+##### *Reviewer A Total Score:* `r subgroup$Section1_Total[1]`/30   
+##### *Reviewer B Total Score:* `r subgroup$Section1_Total[2]`/30  
+##### *Reviewer C Total Score:* `r subgroup$Section1_Total[3]`/30  
+
+#### **Average Total Score: `r round(mean(subgroup$Section1_Total, na.rm=TRUE),2)`/30**
+</div>
+
+<br>
+<br>
+
+### Performance of EoI `r subgroup$EoI[1]` in `r subgroup$Geography[1]` - Percentile by Average Score (Section 1)
+
+```{r echo = FALSE}
+
+
+summaryStats2 <- read.csv("summaryStats_Round.csv")
+
+summaryStats2<- subset(summaryStats2, gsub(" 09$", "", Geography)==subgroup$Geography[1])
+
+
+summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste("EoI", subgroup$EoI[1])
+
+
+p <- ggplot(summaryStats2, aes(x=Avg_Sec_1, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+                                                                                  "<br>",
+                                                                                  "Average Sec. 1: ", Avg_Sec_1,
+                                                                                  "<br>",
+                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
+            geom_point(shape=1)+
+            xlab("Average Section 1") +
+            ylab("Geography Overall Percentile") +
+            scale_x_continuous(limits = c(0, 30)) +
+            scale_y_continuous(limits = c(0, 1))
+
+
+
+
+bscols(
+  widths = c(8),
+ggplotly(p, tooltip="text")
+)
+```
+
+***
+
+### **Section 2 - Quality and ability of the proposed approach and interventions to achieve transformational impact that generate the global environmental benefits (Total Points: 40)**
+
+##### [A) Quality of proposed approach and ability to support traditional structures, knowledge and community practices in the delivery of global environmental benefits.]{.ul}
+
+##### 1\. Is the proposed approach well aligned with the overall objective of the ICI to: Enhance Indigenous Peoples\' and Local Communities\' (IPLCs) efforts to steward land, waters and natural resources to deliver global environmental benefits?
+
+*Scoring:*
+
+-   Weakly aligned;
+
+-   Partially aligned;
+
+-   Well aligned;
+
+-   Exceptionally well aligned
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_A1[1]`/3   *Reviewer B:* `r subgroup$Section2_A1[2]`/3 *Reviewer C:* `r subgroup$Section2_A1[3]`/3
+#### **Average: `r round(mean(subgroup$Section2_A1, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence2_A1[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_A1[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_A1[3]` 
+</div>
+
+<br>
+
+##### 2\. Does the EoI present a clear and convincing set of activities and results?
+
+*Scoring:*
+
+-   The objectives and approach for this project lack clarity and
+    cohesion, and/or do not appear to be realistic for the context;
+
+-   Activities & results defined but logic (Theory of Change) is
+    incomplete;
+
+-   Activities and results are well-defined and cohesive but some
+    aspects require clarification;
+
+-   The project has clear objectives and a cohesive approach with
+    relevant activities for the context and timeline
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_A2[1]`/6   *Reviewer B:* `r subgroup$Section2_A2[2]`/6 *Reviewer C:* `r subgroup$Section2_A2[3]`/6
+#### **Average: `r round(mean(subgroup$Section2_A2, na.rm=TRUE),2)`/6**
+
+
+*Evidence A:* `r subgroup$Evidence2_A2[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_A2[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_A2[3]` 
+</div>
+
+<br>
+
+##### 3\. Will the project (objectives and activities) contribute to overcoming identified threats and putting in place necessary enabling opportunities for IPLC-led conservation?
+
+*Scoring:*
+
+-   Objectives and activities do not clearly address identified threats
+    and opportunities;
+
+-   Contributions to addressing the threats and opportunities are low;
+
+-   Contributions to addressing threats and enabling conditions are
+    slightly over-ambitious;
+
+-   The impact on threats and enabling conditions can be realistically
+    accomplished and are sufficiently ambitious for the projects\'
+    context
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_A3[1]`/3   *Reviewer B:* `r subgroup$Section2_A3[2]`/3 *Reviewer C:* `r subgroup$Section2_A3[3]`/3
+#### **Average: `r round(mean(subgroup$Section2_A3, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence2_A3[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_A3[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_A3[3]` 
+</div>
+
+<br>
+
+##### 4\. Are the activities achievable within a \$500,000 to \$2,000,000 USD budget range in a period of 5 years of project execution?
+
+*Scoring:*
+
+-   Activities/results not aligned with EoI range of investment;
+
+-   Activities/results Partially aligned with EoI range of investment ;
+
+-   Activities/results Well aligned with EoI range of investment ;
+
+-   Activities/results Exceptionally well aligned with EoI range of
+    investment
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_A4[1]`/3   *Reviewer B:* `r subgroup$Section2_A4[2]`/3 *Reviewer C:* `r subgroup$Section2_A4[3]`/3
+#### **Average: `r round(mean(subgroup$Section2_A4, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence2_A4[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_A4[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_A4[3]` 
+</div>
+
+<br>
+
+##### 5\. Does the EoI include significant and concrete sources of co-financing?
+
+*Scoring:*
+
+-   None;
+
+-   Small;
+
+-   Moderate;
+
+-   Significant
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_A5[1]`/3   *Reviewer B:* `r subgroup$Section2_A5[2]`/3 *Reviewer C:* `r subgroup$Section2_A5[3]`/3
+#### **Average: `r round(mean(subgroup$Section2_A5, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence2_A5[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_A5[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_A5[3]` 
+</div>
+
+<br>
+
+##### [B) Potential of the proposed activities to achieve IPLC-led transformational impact that generate global environmental benefits.]{.ul}
+
+##### 6\. Are the estimated Global Environmental Benefits (GEF core indicators) substantial and realistic?
+
+*Scoring:*
+
+-   Not provided;
+
+-   Very Low (below 10,000 Ha);
+
+-   Moderate (between 100,000 - 500,000 Ha);
+
+-   High (between 500,000 - 1,000,000 Ha);
+
+-   Very high above 1,000,000 Ha
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_B6[1]`/5   *Reviewer B:* `r subgroup$Section2_B6[2]`/5 *Reviewer C:* `r subgroup$Section2_B6[3]`/5
+#### **Average: `r round(mean(subgroup$Section2_B6, na.rm=TRUE),2)`/5**
+
+
+*Evidence A:* `r subgroup$Evidence2_B6[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_B6[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_B6[3]` 
+</div>
+
+<br>
+
+##### 7\. Are the additional cultural and livelihoods results contributing to project objectives?
+
+*Scoring:*
+
+-   No provided cultural or livelihood indicators for the project;
+
+-   Indicators proposed but are not clearly aligned with project goals;
+
+-   Indicators proposed and are moderately aligned with project goals;
+
+-   Additional cultural and/or livelihood indicators clearly derive from
+    project goals
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_B7[1]`/3   *Reviewer B:* `r subgroup$Section2_B7[2]`/3 *Reviewer C:* `r subgroup$Section2_B7[3]`/3
+#### **Average: `r round(mean(subgroup$Section2_B7, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence2_B7[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_B7[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_B7[3]` 
+</div>
+
+<br>
+
+##### 8\. Does the EoI provide a clear and robust vision for long-term sustainability?
+
+*Scoring:*
+
+-   Vision for long-term sustainability not provided;
+
+-   This project does not seem to have a clear long-term impact;
+
+-   This project will create medium-term benefits for biodiversity and
+    IPLC governance, which future funding will hopefully build upon;
+
+-   This project will ensure long-term benefits to biodiversity and IPLC
+    systems of governance
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_B8[1]`/3   *Reviewer B:* `r subgroup$Section2_B8[2]`/3 *Reviewer C:* `r subgroup$Section2_B8[3]`/3
+#### **Average: `r round(mean(subgroup$Section2_B8, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence2_B8[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_B8[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_B8[3]` 
+</div>
+
+<br>
+
+##### [C) IPLC-led conservation that advances national and global environmental priorities.]{.ul}
+
+##### 9\. Does the EoI build on and contribute to national priorities as defined in NBSAPs and/or NDCs?
+
+*Scoring:*
+
+-   Contributions not provided;
+
+-   The project is weakly related to either national priorities;
+
+-   The project appears to be tangentially related to national
+    priorities;
+
+-   The proposal reflects an understanding of the national policy
+    priorities and clearly positions the project in relation to those
+    priorities
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_C9[1]`/3   *Reviewer B:* `r subgroup$Section2_C9[2]`/3 *Reviewer C:* `r subgroup$Section2_C9[3]`/3
+#### **Average: `r round(mean(subgroup$Section2_C9, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence2_C9[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_C9[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_C9[3]` 
+</div>
+
+<br>
+
+##### [D) Demonstrated gender mainstreaming in all activities.]{.ul}
+
+##### 10\. Does the EoI provide a clear and robust approach to gender mainstreaming?
+
+*Scoring:*
+
+-   Gender mainstreaming approach is absent;
+
+-   Gender mainstreaming approach is weak;
+
+-   Gender mainstreaming approach is moderately thought through (if
+    there are a few activities as \'add ons\');
+
+-   Significant and well-thought through approach to gender
+    mainstreaming
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_D10[1]`/3   *Reviewer B:* `r subgroup$Section2_D10[2]`/3 *Reviewer C:* `r subgroup$Section2_D10[3]`/3
+#### **Average: `r round(mean(subgroup$Section2_D10, na.rm=TRUE),2)`/3**
+
+
+*Evidence A:* `r subgroup$Evidence2_D10[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_D10[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_D10[3]` 
+</div>
+
+<br>
+
+##### [E) Innovation and potential to scale up.]{.ul}
+
+##### 11\. Do the proposed activities and results demonstrate innovation and potential for transformative results at scale?
+
+*Scoring:*
+
+-   None demonstrated;
+
+-   Low demonstrated potential;
+
+-   Moderate demonstrated potential;
+
+-   Medium-high demonstrated potential;
+
+-   High demonstrated potential;
+
+-   Exceptional demonstrated potential
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section2_E11[1]`/5   *Reviewer B:* `r subgroup$Section2_E11[2]`/5 *Reviewer C:* `r subgroup$Section2_E11[3]`/5
+#### **Average: `r round(mean(subgroup$Section2_E11, na.rm=TRUE),2)`/5**
+
+
+*Evidence A:* `r subgroup$Evidence2_E11[1]` 
+
+*Evidence B:*`r subgroup$Evidence2_E11[2]` 
+
+*Evidence C:*`r subgroup$Evidence2_E11[3]` 
+</div>
+
+<br>
+<br>
+
+<div class="well well-sm">               
+## **Section 2:**
+##### *Reviewer A Total Score:* `r subgroup$Section2_Total[1]`/40   
+##### *Reviewer B Total Score:* `r subgroup$Section2_Total[2]`/40  
+##### *Reviewer C Total Score:* `r subgroup$Section2_Total[3]`/40  
+
+#### **Average Total Score: `r round(mean(subgroup$Section2_Total, na.rm=TRUE),2)`/40**
+</div>
+
+<br>
+<br>
+
+### Performance of EoI `r subgroup$EoI[1]` in `r subgroup$Geography[1]` - Percentile by Average Score (Section 2)
+
+```{r echo = FALSE}
+
+
+summaryStats2 <- read.csv("summaryStats_Round.csv")
+
+summaryStats2<- subset(summaryStats2, gsub(" 09$", "", Geography)==subgroup$Geography[1])
+
+
+summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste("EoI", subgroup$EoI[1])
+
+
+p <- ggplot(summaryStats2, aes(x=Avg_Sec_2, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+                                                                                  "<br>",
+                                                                                  "Average Sec. 2: ", Avg_Sec_2,
+                                                                                  "<br>",
+                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
+            geom_point(shape=1)+
+            xlab("Average Section 2") +
+            ylab("Geography Overall Percentile") +
+            scale_x_continuous(limits = c(0, 40)) +
+            scale_y_continuous(limits = c(0, 1))
+
+
+
+
+bscols(
+  widths = c(8),
+ggplotly(p, tooltip="text")
+)
+```
+
+***
+### **Section 3 - Qualifications and experience of the Organization (Total Points: 30)**
+
+##### [A) Indigenous Peoples or Local Community organization legally recognized under national laws.]{.ul}
+
+##### 1\. Is the EoI led by an IPLC organization?
+
+*Scoring:*
+
+-   IPLC appear to be beneficiaries only;
+
+-   Combination/partnership of IPLC organizations and NGOs, and plans to
+    build IPLC capacity over the project term are clear;
+
+-   IPLC-led approach, NGOs in more limited, defined roles (such as
+    fiduciary);
+
+-   Fully IPLC composed and led approach
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section3_A1[1]`/6   *Reviewer B:* `r subgroup$Section3_A1[2]`/6 *Reviewer C:* `r subgroup$Section3_A1[3]`/6
+#### **Average: `r round(mean(subgroup$Section3_A1, na.rm=TRUE),2)`/6**
+
+
+*Evidence A:* `r subgroup$Evidence3_A1[1]` 
+
+*Evidence B:*`r subgroup$Evidence3_A1[2]`
+
+*Evidence C:*`r subgroup$Evidence3_A1[3]` 
+</div>
+
+<br>
+
+##### [B) Demonstrated on the ground leadership related to Indigenous Peoples and/or Local Community Conservation.]{.ul}
+
+##### 2\. Does the lead proponent demonstrate on-ground leadership relevant to the proposed work?
+
+*Scoring:*
+
+-   None demonstrated;
+
+-   Limited demonstration of relevant on-ground leadership;
+
+-   Demonstrated on-ground leadership relevant to the proposed work;
+
+-   Exceptional and long-standing on-ground leadership relevant to the
+    proposed work
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section3_B2[1]`/6   *Reviewer B:* `r subgroup$Section3_B2[2]`/6 *Reviewer C:* `r subgroup$Section3_B2[3]`/6
+#### **Average: `r round(mean(subgroup$Section3_B2, na.rm=TRUE),2)`/6**
+
+
+*Evidence A:* `r subgroup$Evidence3_B2[1]` 
+
+*Evidence B:*`r subgroup$Evidence3_B2[2]` 
+
+*Evidence C:*`r subgroup$Evidence3_A1[3]` 
+</div>
+
+<br>
+
+##### [C) Proven relevant experience in working with IPLC networks, alliances and organizations/ strength of partnerships on the ground.]{.ul}
+
+##### 3\. Does EoI demonstrate that the lead proponent has strong partnerships, particularly with other IPLC organizations, to carry out the work?
+
+*Scoring:*
+
+-   No partners defined;
+
+-   No IPLC partners identified;
+
+-   IPLC organizations are listed as implementing partners but without
+    clear scope (roles in project design or governance);
+
+-   IPLC organizations are listed as implementing partners with clear
+    roles (in project design or governance);
+
+-   Strong IPLC partnerships that play a central role in design,
+    governance, and implementation of the project;
+
+-   Strong IPLC partnerships have a central role in design, governance
+    and implementation of the project and linkages with national or
+    regional IPO networks
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section3_C3[1]`/5   *Reviewer B:* `r subgroup$Section3_C3[2]`/5 *Reviewer C:* `r subgroup$Section3_C3[3]`/5
+#### **Average: `r round(mean(subgroup$Section3_C3, na.rm=TRUE),2)`/5**
+
+
+*Evidence A:* `r subgroup$Evidence3_C3[1]` 
+
+*Evidence B:*`r subgroup$Evidence3_C3[2]` 
+
+*Evidence C:*`r subgroup$Evidence3_C3[3]` 
+</div>
+
+<br>
+
+##### [D) Technical expertise and capacity to address environmental problems, root causes and barriers.]{.ul}
+
+##### 4\. Does EoI demonstrate technical capacity of lead proponent and partners to deliver the proposed results?
+
+*Scoring:*
+
+-   No skills demonstrated;
+
+-   The skills and experiences outlined have little or no relation to
+    the project activities;
+
+-   There is some lack of clarity or some gaps in the capacities
+    necessary to implement the project;
+
+-   The activities clearly show how they plan to fill capacity gaps over
+    the course of the project;
+
+-   They seem to have adequate skills and capacity for the project but
+    do not have experience with GEF projects;
+
+-   The lead organization and project partners clearly communicate that
+    they have all the skills and experience necessary to implement the
+    project activities. Also, have past experience with GEF funded
+    projects.
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section3_D4[1]`/5   *Reviewer B:* `r subgroup$Section3_D4[2]`/5 *Reviewer C:* `r subgroup$Section3_D4[3]`/5
+#### **Average: `r round(mean(subgroup$Section3_D4, na.rm=TRUE),2)`/5**
+
+
+*Evidence A:* `r subgroup$Evidence3_D4[1]` 
+
+*Evidence B:*`r subgroup$Evidence3_D4[2]` 
+
+*Evidence C:*`r subgroup$Evidence3_D4[3]` 
+</div>
+
+<br>
+
+##### [E) Project Management capacity.]{.ul}
+
+##### 5\. Does the EoI demonstrate project & financial management capacity needed for scale of proposed effort?
+
+*Scoring:*
+
+-   Very limited (no criteria met);
+
+-   Some capacity but would require support (1/3 criteria);
+
+-   Moderate capacity (2/3 criteria met);
+
+-   Very strong (all criteria met) with demonstrated past performance
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section3_E5[1]`/6   *Reviewer B:* `r subgroup$Section3_E5[2]`/6 *Reviewer C:* `r subgroup$Section3_E5[3]`/6
+#### **Average: `r round(mean(subgroup$Section3_E5, na.rm=TRUE),2)`/6**
+
+
+*Evidence A:* `r subgroup$Evidence3_E5[1]` 
+
+*Evidence B:*`r subgroup$Evidence3_E5[2]` 
+
+*Evidence C:*`r subgroup$Evidence3_E5[3]` 
+</div>
+
+<br>
+
+##### 6\. Does lead organization have experience with safeguards and other standards required by GEF?
+
+*Scoring:*
+
+-   Answered no;
+
+-   Answered yes but with weak or lacking explanation to the extent;
+
+-   Answered yes with clear explanation of the extent
+
+<div class="alert alert-info">  
+##### *Reviewer A:* `r subgroup$Section3_E6[1]`/2   *Reviewer B:* `r subgroup$Section3_E6[2]`/2 *Reviewer C:* `r subgroup$Section3_E6[3]`/2
+#### **Average: `r round(mean(subgroup$Section3_E6, na.rm=TRUE),2)`/2**
+
+
+*Evidence A:* `r subgroup$Evidence3_E6[1]` 
+
+*Evidence B:*`r subgroup$Evidence3_E6[2]` 
+
+*Evidence C:*`r subgroup$Evidence3_E6[3]` 
+</div>
+
+<br>
+<br>
+
+<div class="well well-sm">               
+## **Section 3:**
+##### *Reviewer A Total Score:* `r subgroup$Section3_Total[1]`/30   
+##### *Reviewer B Total Score:* `r subgroup$Section3_Total[2]`/30  
+##### *Reviewer C Total Score:* `r subgroup$Section3_Total[3]`/30  
+
+#### **Average Total Score: `r round(mean(subgroup$Section3_Total, na.rm=TRUE),2)`/30**
+</div>
+
+<br>
+<br>
+
+### Performance of EoI `r subgroup$EoI[1]` in `r subgroup$Geography[1]` - Percentile by Average Score (Section 3)
+
+```{r echo = FALSE}
+
+
+summaryStats2 <- read.csv("summaryStats_Round.csv")
+
+summaryStats2<- subset(summaryStats2, gsub(" 09$", "", Geography)==subgroup$Geography[1])
+
+
+summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste("EoI", subgroup$EoI[1])
+
+
+p <- ggplot(summaryStats2, aes(x=Avg_Sec_3, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+                                                                                  "<br>",
+                                                                                  "Average Sec. 3: ", Avg_Sec_3,
+                                                                                  "<br>",
+                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
+            geom_point(shape=1)+
+            xlab("Average Section 3") +
+            ylab("Geography Overall Percentile") +
+            scale_x_continuous(limits = c(0, 30)) +
+            scale_y_continuous(limits = c(0, 1))
+
+
+
+
+bscols(
+  widths = c(8),
+ggplotly(p, tooltip="text")
+)
+```
