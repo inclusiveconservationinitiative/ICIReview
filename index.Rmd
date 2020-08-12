@@ -7,6 +7,9 @@ output:
     orientation: rows
     social: menu
     source_code: embed
+  pdf_document: default
+  word_document: default
+
 ---
 <style type="text/css">
 .main-container {
@@ -52,7 +55,7 @@ bscols(
   
     EoI = colDef(html = TRUE, cell = function(value, index) {
     # Render as a link
-    url <- paste0("TestReports/report.", value,".html")
+    url <- paste0("report.", value,".html")
     htmltools::tags$a(href = url, target = "_blank", as.character(value))
   }),
   
@@ -226,7 +229,7 @@ ggplotly(p, tooltip="text")
 
 ```{r echo = FALSE}
 
-fullData <- readxl::read_xlsx("fulldata.xlsx")
+fullData <- readxl::read_xlsx("docs/fulldataTranslated.xlsx")
 full_Data <- SharedData$new(fullData[c(1,4:7)])
 
 bscols(

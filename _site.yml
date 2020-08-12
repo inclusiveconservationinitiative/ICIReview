@@ -1,3 +1,5 @@
+always_allow_html: true
+
 name: "Testrmarkdown"
 navbar:
   title: "ICI Geographies"
