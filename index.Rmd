@@ -19,6 +19,9 @@ output:
 }
 </style>
 
+
+
+
 ```{r setup, include=FALSE}
 library(ggplot2)
 library(crosstalk)
@@ -27,8 +30,6 @@ library(plotly)
 library(plyr)
 library(flexdashboard)
 library(htmltools)
-# Make some noisily increasing data
-
 
 ```
 
@@ -40,7 +41,7 @@ library(htmltools)
 
 ```{r echo = FALSE}
 
-summaryStats <- read.csv("summaryStats_Round.csv")
+summaryStats <- read.csv("/Users/MichaelOwen/Documents/Github/ICIReview/docs/summaryStats_Round.csv")
 data <- SharedData$new(summaryStats)
 
 bscols(
@@ -59,7 +60,10 @@ bscols(
     htmltools::tags$a(href = url, target = "_blank", as.character(value))
   }),
   
-    Geography = colDef(minWidth = 115),
+    Geography = colDef(minWidth = 115 ,cell = function(value) {
+    if (value == "Melanesia/Polynesia") "Melanesia/ Polynesia" else
+    value
+  }),
     nReviews = colDef(minWidth = 85, name = "# of Reviews", html = TRUE, align = "left", header = JS("
       function(colInfo) {
         return colInfo.column.name
@@ -113,6 +117,7 @@ bscols(
 )
 ```
 
+<P style="page-break-before: always;">
 ### Performance of EoIs - Percentile by Average Total Score
 
 ```{r echo = FALSE}
@@ -124,12 +129,14 @@ p <- ggplot(data, aes(x=Average, y=Geog_Percentile, color = Geography, text=past
                                                                                   "<br>",
                                                                                   "Geog. Percentile: ", Geog_Percentile)),
             group = Geography) +
-            geom_point(shape=1) +
+            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 0.9) +
             xlab("Average Total Score") +
-            ylab("Geography Percentile") +
+            ylab("Geography Overall Percentile") +
             scale_x_continuous(limits = c(0, 100)) +
-            scale_y_continuous(limits = c(0, 1))
-
+            scale_y_continuous(limits = c(0, 1)) +
+            labs(color = "EoIs")
+          
 
 
 
@@ -140,7 +147,7 @@ ggplotly(p, tooltip="text")
 )
 ```
 
-
+<P style="page-break-before: always;">
 ### Performance of EoIs - Percentile by Average Score (Section 1)
 
 ```{r echo = FALSE}
@@ -153,12 +160,14 @@ p <- ggplot(data, aes(x=Avg_Sec_1, y=Geog_Percentile, color = Geography, text=pa
                                                                                   "Average: ", Average,
                                                                                   "<br>",
                                                                                   "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(shape=1) +
-  xlab("Average Section 1") +
-  ylab("Geography Percentile") +
-  scale_x_continuous(limits = c(0, 30)) +
-  scale_y_continuous(limits = c(0, 1))
-
+            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 0.9) +
+          xlab("Average Section 1") +
+          ylab("Geography Overall Percentile") +
+          scale_x_continuous(limits = c(0, 30)) +
+          scale_y_continuous(limits = c(0, 1)) +
+          labs(color = "EoIs")
+        
 
 
 
@@ -168,6 +177,7 @@ ggplotly(p, tooltip="text")
 )
 ```
 
+<P style="page-break-before: always;">
 ### Performance of EoIs - Percentile by Average Score (Section 2)
 
 ```{r echo = FALSE}
@@ -180,13 +190,15 @@ p <- ggplot(data, aes(x=Avg_Sec_2, y=Geog_Percentile, color = Geography, text=pa
                                                                                   "Average: ", Average,
                                                                                   "<br>",
                                                                                   "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(shape=1) +
-  xlab("Average Section 2") +
-  ylab("Geography Percentile") +
-  scale_x_continuous(limits = c(0, 40)) +
-  scale_y_continuous(limits = c(0, 1))
-
-
+            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 0.9) +
+            xlab("Average  Section 2") +
+            ylab("Geography Overall Percentile") +
+            scale_x_continuous(limits = c(0, 40)) +
+            scale_y_continuous(limits = c(0, 1)) +
+            labs(color = "EoIs")
+          
+          
 
 
 bscols(
@@ -195,6 +207,7 @@ ggplotly(p, tooltip="text")
 )
 ```
 
+<P style="page-break-before: always;">
 ### Performance of EoIs - Percentile by Average Score (Section 3)
 
 ```{r echo = FALSE}
@@ -208,11 +221,13 @@ p <- ggplot(data, aes(x=Avg_Sec_3, y=Geog_Percentile, color = Geography, text=pa
                                                                                   "Average: ", Average,
                                                                                   "<br>",
                                                                                   "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(shape=1) +
-  xlab("Average Section 3") +
-  ylab("Geography Percentile") +
-  scale_x_continuous(limits = c(0, 30)) +
-  scale_y_continuous(limits = c(0, 1))
+            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 0.9) +
+            xlab("Average  Section 3") +
+            ylab("Geography Overall Percentile") +
+            scale_x_continuous(limits = c(0, 30)) +
+            scale_y_continuous(limits = c(0, 1)) +
+            labs(color = "EoIs")
 
 
 
@@ -239,6 +254,12 @@ bscols(
     filter_select("EoI", "EoI Number", full_Data, ~EoI)
   ),
   reactable(full_Data,
+            columns = list(
+              EoI = colDef(html = TRUE, cell = function(value, index) {
+              # Render as a link
+              url <- paste0("report.", value,".html")
+              htmltools::tags$a(href = url, target = "_blank", as.character(value))
+            })),
             showPageSizeOptions = TRUE, pageSizeOptions = c(5, 10, 25, 50), defaultPageSize = 5,
             highlight = TRUE,
             striped = TRUE)

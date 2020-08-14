@@ -24,10 +24,10 @@ output:
 <style type="text/css">
 
 body{ /* Normal  */
-      font-size: 14px;
+      font-size: 12px;
   }
 td {  /* Table  */
-  font-size: 14px;
+  font-size: 10px;
 }
 h1.title {
   font-size: 38px;
@@ -77,16 +77,46 @@ suppressWarnings(suppressPackageStartupMessages(library(flexdashboard)))
 \AtBeginDocument{\let\maketitle\relax}
 
 
-# Assessment of EoI:`r subgroup$EoI[1]` 
+# Assessment of EoI: `r subgroup$EoI[1]` 
+### Organization: `r subgroup$Organization[1]` 
 
 <br><br>
 
 # EoI Metadata
 ```{r echo = FALSE}
 
-full_Data <- subgroup[c(1,4:7,26,49,62,65)]
+full_Data <- subgroup[c(4:6,26,49,62,65)]
 
-  reactable(full_Data,
+  reactable(full_Data, 
+            columns = list(
+    ##name = colDef(minWidth = 85),
+    EoI = colDef(minWidth = 75),
+    Geography = colDef(minWidth = 115 ,cell = function(value) {
+    if (value == "Melanesia/Polynesia") "Melanesia/ Polynesia" else
+    value
+  }),
+    state = colDef(minWidth = 85),
+    Section1_Total = colDef(minWidth = 75, name = "Section 1", html = TRUE, align = "left", header = JS("
+      function(colInfo) {
+        return colInfo.column.name
+      }
+    ")),
+    Section2_Total = colDef(minWidth = 75, name = "Section 2", html = TRUE, align = "left", header = JS("
+      function(colInfo) {
+        return colInfo.column.name
+      }
+    ")),
+    Section3_Total = colDef(minWidth = 75, name = "Section 3", html = TRUE, align = "left", header = JS("
+      function(colInfo) {
+        return colInfo.column.name
+      }
+    ")),
+    Total = colDef(minWidth = 75, name = "Total", html = TRUE, align = "left", header = JS("
+      function(colInfo) {
+        return colInfo.column.name
+      }
+    "))
+    ),
             defaultPageSize = 4, 
             minRows = 4,
             highlight = TRUE,
@@ -97,12 +127,15 @@ full_Data <- subgroup[c(1,4:7,26,49,62,65)]
 ### Performance of EoI `r subgroup$EoI[1]` in `r subgroup$Geography[1]` - Percentile by Average Score
 
 ```{r echo = FALSE}
-summaryStats <- read.csv("summaryStats_Round.csv")
+summaryStats <- read.csv("/Users/MichaelOwen/Documents/Github/ICIReview/docs/summaryStats_Round.csv")
+
 
 summaryStats<- subset(summaryStats, gsub(" 09$", "", Geography)==subgroup$Geography[1])
 
 
-summaryStats$Geography[match(subgroup$EoI[1], summaryStats$EoI)] <- paste("EoI", subgroup$EoI[1])
+summaryStats$Geography[match(subgroup$EoI[1], summaryStats$EoI)] <- paste(subgroup$EoI[1])
+
+
 
 
 p <- ggplot(summaryStats, aes(x=Average, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
@@ -110,11 +143,14 @@ p <- ggplot(summaryStats, aes(x=Average, y=Geog_Percentile, color = Geography, t
                                                                                   "Average: ", Average,
                                                                                   "<br>",
                                                                                   "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(shape=1) +
+            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 0.9) +
+            scale_color_manual(values=c("#00BA38", "#F8766D")) +
             xlab("Average Total Score") +
             ylab("Geography Overall Percentile") +
             scale_x_continuous(limits = c(0, 100)) +
-            scale_y_continuous(limits = c(0, 1))
+            scale_y_continuous(limits=c(0,1))+
+            labs(color = "EoIs")
 
 
 
@@ -125,8 +161,8 @@ ggplotly(p, tooltip="text")
 )
 ```
 
-
 ***
+<P style="page-break-before: always;">
 
 ### **Section 1 - Experience & strengths relevant to the proposed Indigenous territory, landscape/seascape (Total Points: 30)**
 
@@ -413,6 +449,7 @@ ggplotly(p, tooltip="text")
 <br>
 <br>
 
+<P style="page-break-before: always;">
 <div class="well well-sm">               
 ## **Section 1:**
 ##### *Reviewer A Total Score:* `r subgroup$Section1_Total[1]`/30   
@@ -430,24 +467,28 @@ ggplotly(p, tooltip="text")
 ```{r echo = FALSE}
 
 
-summaryStats2 <- read.csv("summaryStats_Round.csv")
-
-summaryStats2<- subset(summaryStats2, gsub(" 09$", "", Geography)==subgroup$Geography[1])
+summaryStats1 <- read.csv("/Users/MichaelOwen/Documents/Github/ICIReview/docs/summaryStats_Round.csv")
 
 
-summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste("EoI", subgroup$EoI[1])
+summaryStats1<- subset(summaryStats1, gsub(" 09$", "", Geography)==subgroup$Geography[1])
 
 
-p <- ggplot(summaryStats2, aes(x=Avg_Sec_1, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+summaryStats1$Geography[match(subgroup$EoI[1], summaryStats1$EoI)] <- paste(subgroup$EoI[1])
+
+
+p <- ggplot(summaryStats1, aes(x=Avg_Sec_1, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
                                                                                   "<br>",
                                                                                   "Average Sec. 1: ", Avg_Sec_1,
                                                                                   "<br>",
                                                                                   "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(shape=1)+
+            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 0.9) +
+            scale_color_manual(values=c("#00BA38", "#F8766D")) +
             xlab("Average Section 1") +
             ylab("Geography Overall Percentile") +
             scale_x_continuous(limits = c(0, 30)) +
-            scale_y_continuous(limits = c(0, 1))
+            scale_y_continuous(limits = c(0, 1)) +
+            labs(color = "EoIs")
 
 
 
@@ -459,6 +500,7 @@ ggplotly(p, tooltip="text")
 ```
 
 ***
+<P style="page-break-before: always;">
 
 ### **Section 2 - Quality and ability of the proposed approach and interventions to achieve transformational impact that generate the global environmental benefits (Total Points: 40)**
 
@@ -782,6 +824,7 @@ ggplotly(p, tooltip="text")
 <br>
 <br>
 
+<P style="page-break-before: always;">
 <div class="well well-sm">               
 ## **Section 2:**
 ##### *Reviewer A Total Score:* `r subgroup$Section2_Total[1]`/40   
@@ -799,12 +842,13 @@ ggplotly(p, tooltip="text")
 ```{r echo = FALSE}
 
 
-summaryStats2 <- read.csv("summaryStats_Round.csv")
+summaryStats2 <- read.csv("/Users/MichaelOwen/Documents/Github/ICIReview/docs/summaryStats_Round.csv")
+
 
 summaryStats2<- subset(summaryStats2, gsub(" 09$", "", Geography)==subgroup$Geography[1])
 
 
-summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste("EoI", subgroup$EoI[1])
+summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste(subgroup$EoI[1])
 
 
 p <- ggplot(summaryStats2, aes(x=Avg_Sec_2, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
@@ -812,11 +856,14 @@ p <- ggplot(summaryStats2, aes(x=Avg_Sec_2, y=Geog_Percentile, color = Geography
                                                                                   "Average Sec. 2: ", Avg_Sec_2,
                                                                                   "<br>",
                                                                                   "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(shape=1)+
+            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 0.9) +
+            scale_color_manual(values=c("#00BA38", "#F8766D")) +
             xlab("Average Section 2") +
             ylab("Geography Overall Percentile") +
             scale_x_continuous(limits = c(0, 40)) +
-            scale_y_continuous(limits = c(0, 1))
+            scale_y_continuous(limits = c(0, 1)) +
+            labs(color = "EoIs")
 
 
 
@@ -828,6 +875,8 @@ ggplotly(p, tooltip="text")
 ```
 
 ***
+<P style="page-break-before: always;">
+
 ### **Section 3 - Qualifications and experience of the Organization (Total Points: 30)**
 
 ##### [A) Indigenous Peoples or Local Community organization legally recognized under national laws.]{.ul}
@@ -1018,6 +1067,7 @@ ggplotly(p, tooltip="text")
 <br>
 <br>
 
+<P style="page-break-before: always;">
 <div class="well well-sm">               
 ## **Section 3:**
 ##### *Reviewer A Total Score:* `r subgroup$Section3_Total[1]`/30   
@@ -1035,24 +1085,28 @@ ggplotly(p, tooltip="text")
 ```{r echo = FALSE}
 
 
-summaryStats2 <- read.csv("summaryStats_Round.csv")
-
-summaryStats2<- subset(summaryStats2, gsub(" 09$", "", Geography)==subgroup$Geography[1])
+summaryStats3 <- read.csv("/Users/MichaelOwen/Documents/Github/ICIReview/docs/summaryStats_Round.csv")
 
 
-summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste("EoI", subgroup$EoI[1])
+summaryStats3<- subset(summaryStats3, gsub(" 09$", "", Geography)==subgroup$Geography[1])
 
 
-p <- ggplot(summaryStats2, aes(x=Avg_Sec_3, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+summaryStats3$Geography[match(subgroup$EoI[1], summaryStats3$EoI)] <- paste(subgroup$EoI[1])
+
+
+p <- ggplot(summaryStats3, aes(x=Avg_Sec_3, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
                                                                                   "<br>",
                                                                                   "Average Sec. 3: ", Avg_Sec_3,
                                                                                   "<br>",
                                                                                   "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(shape=1)+
+            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 0.9) +
+            scale_color_manual(values=c("#00BA38", "#F8766D")) +
             xlab("Average Section 3") +
             ylab("Geography Overall Percentile") +
             scale_x_continuous(limits = c(0, 30)) +
-            scale_y_continuous(limits = c(0, 1))
+            scale_y_continuous(limits = c(0, 1)) +
+            labs(color = "EoIs")
 
 
 
