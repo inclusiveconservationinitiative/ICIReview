@@ -143,7 +143,24 @@ p <- ggplot(data, aes(x=Average, y=Geog_Percentile, color = Geography, text=past
 
 bscols(
   widths = c(8),
-ggplotly(p, tooltip="text")
+ggplotly(p, tooltip="text") %>%
+      config(displaylogo = FALSE, 
+             toImageButtonOptions = list(
+               format = "png",
+               filename = paste0("Overall"),
+               width = 600,
+               height = 600
+             ),
+             modeBarButtonsToRemove = c(
+               'sendDataToCloud',
+               'select2d',
+               'autoScale2d',
+               'lasso2d',
+               'zoomIn2d',
+               'zoomOut2d',
+               'pan2d'
+             )) %>%
+      layout(autosize = TRUE, margin = list(t = 50))
 )
 ```
 
@@ -173,7 +190,24 @@ p <- ggplot(data, aes(x=Avg_Sec_1, y=Geog_Percentile, color = Geography, text=pa
 
 bscols(
   widths = c(8),
-ggplotly(p, tooltip="text")
+ggplotly(p, tooltip="text") %>%
+      config(displaylogo = FALSE, 
+             toImageButtonOptions = list(
+               format = "png",
+               filename = paste0("Section1"),
+               width = 600,
+               height = 600
+             ),
+             modeBarButtonsToRemove = c(
+               'sendDataToCloud',
+               'select2d',
+               'autoScale2d',
+               'lasso2d',
+               'zoomIn2d',
+               'zoomOut2d',
+               'pan2d'
+             )) %>%
+      layout(autosize = TRUE, margin = list(t = 50))
 )
 ```
 
@@ -203,7 +237,24 @@ p <- ggplot(data, aes(x=Avg_Sec_2, y=Geog_Percentile, color = Geography, text=pa
 
 bscols(
   widths = c(8),
-ggplotly(p, tooltip="text")
+ggplotly(p, tooltip="text") %>%
+      config(displaylogo = FALSE, 
+             toImageButtonOptions = list(
+               format = "png",
+               filename = paste0("Section2"),
+               width = 600,
+               height = 600
+             ),
+             modeBarButtonsToRemove = c(
+               'sendDataToCloud',
+               'select2d',
+               'autoScale2d',
+               'lasso2d',
+               'zoomIn2d',
+               'zoomOut2d',
+               'pan2d'
+             )) %>%
+      layout(autosize = TRUE, margin = list(t = 50))
 )
 ```
 
@@ -234,7 +285,24 @@ p <- ggplot(data, aes(x=Avg_Sec_3, y=Geog_Percentile, color = Geography, text=pa
 
 bscols(
   widths = c(8),
-ggplotly(p, tooltip="text")
+ggplotly(p, tooltip="text") %>%
+      config(displaylogo = FALSE, 
+             toImageButtonOptions = list(
+               format = "png",
+               filename = paste0("Section3"),
+               width = 600,
+               height = 600
+             ),
+             modeBarButtonsToRemove = c(
+               'sendDataToCloud',
+               'select2d',
+               'autoScale2d',
+               'lasso2d',
+               'zoomIn2d',
+               'zoomOut2d',
+               'pan2d'
+             )) %>%
+      layout(autosize = TRUE, margin = list(t = 50))
 )
 ```
 

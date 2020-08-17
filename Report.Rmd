@@ -127,34 +127,54 @@ full_Data <- subgroup[c(4:6,26,49,62,65)]
 ### Performance of EoI `r subgroup$EoI[1]` in `r subgroup$Geography[1]` - Percentile by Average Score
 
 ```{r echo = FALSE}
+
+
 summaryStats <- read.csv("/Users/MichaelOwen/Documents/Github/ICIReview/docs/summaryStats_Round.csv")
-
-
 
 summaryStats<- subset(summaryStats, gsub(" 09$", "", Geography)==subgroup$Geography[1])
 
-
 summaryStats$Geography[match(subgroup$EoI[1], summaryStats$EoI)] <- paste(subgroup$EoI[1])
 
+p <- ggplot(summaryStats, aes(x=Average, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
+                                                                                           "<br>",
+                                                                                           "Average: ", Average,
+                                                                                           "<br>",
+                                                                                           "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
+  geom_point(data = summaryStats[!grepl("1|2|3|4|5|6|7|8|9|0", summaryStats$Geography), , drop = FALSE],
+             position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 1) +
+  geom_point(data = summaryStats[grepl("1|2|3|4|5|6|7|8|9|0", summaryStats$Geography), , drop = FALSE],
+             position=position_jitter(width = 2, height = 0),
+             shape = 1, alpha = 1) +  
+  scale_color_manual(values=c("#00BA38", "#F8766D")) +
+  xlab("Average Total Score") +
+  ylab("Geography Overall Percentile") +
+  scale_x_continuous(limits = c(0, 100)) +
+  scale_y_continuous(limits=c(0,1))+
+  labs(color = "EoIs")
 
-p <- ggplot(summaryStats, aes(x=Average, y=Geog_Percentile, color=ifelse(grepl("EOI", Geography), 'EOI',Geography), text=paste0("EoI: ", EoI,
-                                                                                  "<br>",
-                                                                                  "Average: ", Average,
-                                                                                  "<br>",
-                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
-             shape = 1, alpha = 0.9) +
-            scale_color_manual(values=c("#00BA38", "#F8766D")) +
-            xlab("Average Total Score") +
-            ylab("Geography Overall Percentile") +
-            scale_x_continuous(limits = c(0, 100)) +
-            scale_y_continuous(limits = c(0, 1)) +
-            labs(color = "EoIs")
 
 
 bscols(
   widths = c(8),
-ggplotly(p, tooltip="text")
+  ggplotly(p, tooltip="text") %>%
+      config(displaylogo = FALSE, 
+             toImageButtonOptions = list(
+               format = "png",
+               filename = paste0("Overall_",summaryStats$EoI[1]),
+               width = 600,
+               height = 600
+             ),
+             modeBarButtonsToRemove = c(
+               'sendDataToCloud',
+               'select2d',
+               'autoScale2d',
+               'lasso2d',
+               'zoomIn2d',
+               'zoomOut2d',
+               'pan2d'
+             )) %>%
+      layout(autosize = TRUE, margin = list(t = 50))
 )
 ```
 
@@ -438,33 +458,50 @@ ggplotly(p, tooltip="text")
 
 summaryStats1 <- read.csv("/Users/MichaelOwen/Documents/Github/ICIReview/docs/summaryStats_Round.csv")
 
-
 summaryStats1<- subset(summaryStats1, gsub(" 09$", "", Geography)==subgroup$Geography[1])
-
 
 summaryStats1$Geography[match(subgroup$EoI[1], summaryStats1$EoI)] <- paste(subgroup$EoI[1])
 
-
 p <- ggplot(summaryStats1, aes(x=Avg_Sec_1, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
-                                                                                  "<br>",
-                                                                                  "Average Sec. 1: ", Avg_Sec_1,
-                                                                                  "<br>",
-                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
-             shape = 1, alpha = 0.9) +
-            scale_color_manual(values=c("#00BA38", "#F8766D")) +
-            xlab("Average Section 1") +
-            ylab("Geography Overall Percentile") +
-            scale_x_continuous(limits = c(0, 30)) +
-            scale_y_continuous(limits = c(0, 1)) +
-            labs(color = "EoIs")
-
+                                                                                           "<br>",
+                                                                                           "Average Sec. 1: ", Avg_Sec_1,
+                                                                                           "<br>",
+                                                                                           "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
+  geom_point(data = summaryStats1[!grepl("1|2|3|4|5|6|7|8|9|0", summaryStats1$Geography), , drop = FALSE],
+             position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 1) +
+  geom_point(data = summaryStats1[grepl("1|2|3|4|5|6|7|8|9|0", summaryStats1$Geography), , drop = FALSE],
+             position=position_jitter(width = 2, height = 0),
+             shape = 1, alpha = 1) +  
+  scale_color_manual(values=c("#00BA38", "#F8766D")) +
+  xlab("Average Section 1") +
+  ylab("Geography Overall Percentile") +
+  scale_x_continuous(limits = c(0, 30)) +
+  scale_y_continuous(limits=c(0,1))+
+  labs(color = "EoIs")
 
 
 
 bscols(
   widths = c(8),
-ggplotly(p, tooltip="text")
+  ggplotly(p, tooltip="text") %>%
+      config(displaylogo = FALSE, 
+             toImageButtonOptions = list(
+               format = "png",
+               filename = paste0("Section3_",summaryStats1$EoI[1]),
+               width = 600,
+               height = 600
+             ),
+             modeBarButtonsToRemove = c(
+               'sendDataToCloud',
+               'select2d',
+               'autoScale2d',
+               'lasso2d',
+               'zoomIn2d',
+               'zoomOut2d',
+               'pan2d'
+             )) %>%
+      layout(autosize = TRUE, margin = list(t = 50))
 )
 ```
 
@@ -790,33 +827,50 @@ ggplotly(p, tooltip="text")
 
 summaryStats2 <- read.csv("/Users/MichaelOwen/Documents/Github/ICIReview/docs/summaryStats_Round.csv")
 
-
 summaryStats2<- subset(summaryStats2, gsub(" 09$", "", Geography)==subgroup$Geography[1])
-
 
 summaryStats2$Geography[match(subgroup$EoI[1], summaryStats2$EoI)] <- paste(subgroup$EoI[1])
 
-
 p <- ggplot(summaryStats2, aes(x=Avg_Sec_2, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
-                                                                                  "<br>",
-                                                                                  "Average Sec. 2: ", Avg_Sec_2,
-                                                                                  "<br>",
-                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
-             shape = 1, alpha = 0.9) +
-            scale_color_manual(values=c("#00BA38", "#F8766D")) +
-            xlab("Average Section 2") +
-            ylab("Geography Overall Percentile") +
-            scale_x_continuous(limits = c(0, 40)) +
-            scale_y_continuous(limits = c(0, 1)) +
-            labs(color = "EoIs")
-          
+                                                                                           "<br>",
+                                                                                           "Average Sec. 2: ", Avg_Sec_2,
+                                                                                           "<br>",
+                                                                                           "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
+  geom_point(data = summaryStats2[!grepl("1|2|3|4|5|6|7|8|9|0", summaryStats2$Geography), , drop = FALSE],
+             position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 1) +
+  geom_point(data = summaryStats2[grepl("1|2|3|4|5|6|7|8|9|0", summaryStats2$Geography), , drop = FALSE],
+             position=position_jitter(width = 2, height = 0),
+             shape = 1, alpha = 1) +  
+  scale_color_manual(values=c("#00BA38", "#F8766D")) +
+  xlab("Average Section 2") +
+  ylab("Geography Overall Percentile") +
+  scale_x_continuous(limits = c(0, 40)) +
+  scale_y_continuous(limits=c(0,1))+
+  labs(color = "EoIs")
 
 
 
 bscols(
   widths = c(8),
-ggplotly(p, tooltip="text")
+  ggplotly(p, tooltip="text") %>%
+      config(displaylogo = FALSE, 
+             toImageButtonOptions = list(
+               format = "png",
+               filename = paste0("Section2_",summaryStats2$EoI[1]),
+               width = 600,
+               height = 600
+             ),
+             modeBarButtonsToRemove = c(
+               'sendDataToCloud',
+               'select2d',
+               'autoScale2d',
+               'lasso2d',
+               'zoomIn2d',
+               'zoomOut2d',
+               'pan2d'
+             )) %>%
+      layout(autosize = TRUE, margin = list(t = 50))
 )
 ```
 
@@ -1020,32 +1074,49 @@ ggplotly(p, tooltip="text")
 
 summaryStats3 <- read.csv("/Users/MichaelOwen/Documents/Github/ICIReview/docs/summaryStats_Round.csv")
 
-
 summaryStats3<- subset(summaryStats3, gsub(" 09$", "", Geography)==subgroup$Geography[1])
-
 
 summaryStats3$Geography[match(subgroup$EoI[1], summaryStats3$EoI)] <- paste(subgroup$EoI[1])
 
-
 p <- ggplot(summaryStats3, aes(x=Avg_Sec_3, y=Geog_Percentile, color = Geography, text=paste0("EoI: ", EoI,
-                                                                                  "<br>",
-                                                                                  "Average Sec. 3: ", Avg_Sec_3,
-                                                                                  "<br>",
-                                                                                  "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
-            geom_point(position=position_dodge2(width = 0.01, preserve = "single"),
-             shape = 1, alpha = 0.9) +
-            scale_color_manual(values=c("#00BA38", "#F8766D")) +
-            xlab("Average Section 3") +
-            ylab("Geography Overall Percentile") +
-            scale_x_continuous(limits = c(0, 30)) +
-            scale_y_continuous(limits = c(0, 1)) +
-            labs(color = "EoIs")
-          
+                                                                                           "<br>",
+                                                                                           "Average Sec. 3: ", Avg_Sec_3,
+                                                                                           "<br>",
+                                                                                           "Geog. Percentile: ", Geog_Percentile)), group = EoI) +
+  geom_point(data = summaryStats3[!grepl("1|2|3|4|5|6|7|8|9|0", summaryStats3$Geography), , drop = FALSE],
+             position=position_dodge2(width = 0.01, preserve = "single"),
+             shape = 1, alpha = 1) +
+  geom_point(data = summaryStats3[grepl("1|2|3|4|5|6|7|8|9|0", summaryStats3$Geography), , drop = FALSE],
+             position=position_jitter(width = 2, height = 0),
+             shape = 1, alpha = 1) +  
+  scale_color_manual(values=c("#00BA38", "#F8766D")) +
+  xlab("Average Section 3") +
+  ylab("Geography Overall Percentile") +
+  scale_x_continuous(limits = c(0, 30)) +
+  scale_y_continuous(limits=c(0,1))+
+  labs(color = "EoIs")
 
 
 
 bscols(
   widths = c(8),
-ggplotly(p, tooltip="text")
+  ggplotly(p, tooltip="text") %>%
+      config(displaylogo = FALSE, 
+             toImageButtonOptions = list(
+               format = "png",
+               filename = paste0("Section3_",summaryStats3$EoI[1]),
+               width = 600,
+               height = 600
+             ),
+             modeBarButtonsToRemove = c(
+               'sendDataToCloud',
+               'select2d',
+               'autoScale2d',
+               'lasso2d',
+               'zoomIn2d',
+               'zoomOut2d',
+               'pan2d'
+             )) %>%
+      layout(autosize = TRUE, margin = list(t = 50))
 )
 ```
