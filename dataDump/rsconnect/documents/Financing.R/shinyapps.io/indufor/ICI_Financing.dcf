@@ -1,0 +1,13 @@
+name: ICI_Financing
+title: ICI_Financing
+username:
+account: indufor
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2711675
+bundleId: 3561113
+url: https://indufor.shinyapps.io/ICI_Financing/
+when: 1598471529.29802
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: CBD_3rd_National_Report_Answers.xlsx|CBD_3rd_National_Report_Scores.xlsx|ICIScoringTool.R|landdefenders.csv|compendium

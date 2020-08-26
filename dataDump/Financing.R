@@ -64,7 +64,7 @@ nmsY <- names(gefproj[c(7,8,10)])
 nmsX <- names(gefproj[c(3,4)])
 
 
-ui <- navbarPage(title = "ICI Geographies EoI Scoring",
+ui <- navbarPage(title = "ICI Geographies",
                  theme = shinytheme("flatly"), 
 tabPanel("Financing Landscape", value = "panel-8",
          tags$head(
@@ -198,7 +198,7 @@ server = function(input, output, session) {
       search = list(regex = TRUE, caseInsensitive = FALSE),
       pageLength = 10
     ), 
-    caption = 'Table 3: National or Transnational Projects.')%>%
+    caption = 'Table 1: National or Transnational Projects.')%>%
       formatCurrency(c('Grant', 'Cofinancing'), digits = 0)
     ) 
   
