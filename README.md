@@ -10,6 +10,7 @@ Access ancillary data to the ICI EoI assessment process: [dataDump](https://gith
 - Financing Data [link](https://indufor.shinyapps.io/ICI_Financing/)
 > Interactive database of IPLC financing 2015 - 2020.
 - Ocean Health Data [link](http://ohi-science.org/ohi-global/scores.html)
+> The Ocean Health Index (OHI) is a tailorable marine assessment framework to comprehensively and quantitatively evaluate ocean health.
 - Global Witness Land Defenders Killed Per Year [link](https://github.com/inclusiveconservationinitiative/ICIReview/blob/master/dataDump/Global_Witness_Land_Defenders_Killed.xlsx?raw=true)
 > Annual report into the killings of land and environmental defenders. Full report for 2019 found [here](https://www.globalwitness.org/en/campaigns/environmental-activists/defending-tomorrow/).
 
